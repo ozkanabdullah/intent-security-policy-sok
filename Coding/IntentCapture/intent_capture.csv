@@ -1,0 +1,502 @@
+BibTeX Key,Paper,Sub-Corpus,Capture Family,Sub-Mechanism,IR Family,Rationale and Evidence
+lessi20245g,"5G and Beyond 5G Technologies Enabling Industry 5.0 – Network Applications for Robotics (Lessi et al., Procedia Computer Science 2024)",General,Structured Interfaces,(not specified due to lack of evidence),Not specified,"Family: Users manage their Network Applications through an intent-based networking dashboard (IBD); no free text or formal language is used.
+Sub: The dashboard's fields and how a selection is mapped to the request passed on are not described.
+IR: The object handed from the dashboard to the next module is not described.
+Evidence: ""Users can effortlessly create, delete, or modify Network Applications and adjust QoS settings for each application""; ""Our IBD offers a user-friendly interface that allows users to visualize and control their various Network Applications""."
+zhang2021conflict,"A Conflict Resolution Scheme in Intent-Driven Network (Zhang et al., IEEE/CIC ICCC 2021)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Users declare intents as a predefined, fixed-field quadruple (source/destination group, filter, SFC, constraint); no grammar or language-level validation, and no free text is interpreted.
+Sub: Fields map deterministically to ACL elements; knowledge-graph reasoning over groups is a downstream (Translation) step.
+IR: The quadruple is a fixed-field record. It carries a constraint field, but it is consumed by a sequential rule-based algorithm, not a solver (Constraint-based = secondary candidate).
+Evidence: ""Users can declare intents with the form of intent quadruple""; ""a pair of groups, indicating the source group and destination group of an intent""; ""the network information graph and intent""."
+colaiacomo2025formal,"A Formal Model of Security Capabilities Towards Vendor-Agnostic Channel Protection (Colaiacomo & Basile, IEEE ICCT 2025)",Security,Formal Language,Policy Language Specification,Schema-based,"Family: The administrator writes policy directly in a vendor-agnostic abstract policy language derived from the capability model; input is validated against an NSF-specific grammar.
+Sub: Declarative capability-based policy statements without inference semantics (HSPL/MSPL lineage).
+IR: An XML policy document validated by an XSD; the NSF translator lowers it to the target's low-level language, so it is not consumed as-is.
+Evidence: ""defines the grammar to validate an abstract policy for a target NSF""; ""XML Policy: contains the rules written in the abstract notation""; ""Low-Level Policy: contains the security configuration"".
+Secondary: Structured Interfaces (XML document delivered as a file). Same research group and capability model as Basile et al. (2026)."
+basile2026formal,"A Formal Model of Security Controls' Capabilities and Its Applications to Policy Refinement and Incident Management (Basile et al., IEEE/ACM ToN 2026)",Security,Formal Language,Policy Language Specification,Schema-based,"Family: Policies are written in a model-derived abstract policy language with fixed statement elements; free text is not interpreted by any model.
+Sub: Subject–action–object authorization statements without inference semantics.
+IR: Fixed-element policy statements (XML-validated) that the refinement engine translates into security-control configurations.
+Evidence: ""HLP statements are authorization policies expressed in the subject-action-verb-options paradigm""; ""RefEng analyses the subjects, objects, and optional fields present in the HLPs""; ""into MLP for the security controls in the target network"".
+Note: CTI-triggered playbooks are a non-human intent source and not the dominant channel. Same research group and capability model as Colaiacomo & Basile (2025)."
+detrizio2024novel,"A Novel Malicious Intent Detection Approach in Intent-Based Enterprise Networks (de Trizio et al., CNSM 2024)",Security,Classical NLP,Joint Intent Modeling,Programmatic,"Family: Free natural language processed by a Rasa NLU pipeline; no generative LLM.
+Sub: The DIET classifier jointly learns entity recognition and intent classification in one model.
+IR: Extracted entities are assembled into a Nile intent using only user-supplied information, so this step is Capture; Nile is an analyzable, compilable structure.
+Evidence: ""Dual Intent Entity Transformer (DIET) classifier""; ""proficient in both entity recognition and intent classification""; ""the Network Intent Language (Nile) as the IBN language"".
+Secondary: Schema-based (extracted entity records), since the evaluated contribution is extraction/classification. The malicious-intent check is an accept/reject gate and does not change the sub-mechanism."
+dorai2025policydriven,"A Policy-Driven Architecture for Verifiable Geo-Compliance in Programmable Networks (Dorai, IEEE MCSoC 2025)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The intent (HLI) is a machine-readable YAML document with fixed fields; the natural-language example sentence has no processing mechanism.
+Sub: The orchestrator parses the fields and maps them deterministically to domain rules.
+IR: The HLI record (C, A, G). Rego policies are generated with a domain knowledge base and consumed as-is by OPA, so they are Translation output, not IR.
+Evidence: ""the HLI is defined in a machine-readable format like YAML""; ""HLI = (C, A, G)""; ""the orchestrator's logic parses the HLI data"".
+Note: Prototype and evaluation methodology are proposed; empirical validation is left to future work."
+mahmood2026selfcorrecting,"A Self-Correcting Multi-Agent LLM Pipeline for Verified Kubernetes Network Policy (Mahmood & Song, IFIP 2026)",Security,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Free natural language converted by pretrained generative models.
+Sub: No weight update; schema, rules and few-shot examples sit in the system prompt. The Critic→Verifier→Refiner loop corrects the NetworkPolicy YAML, which is the enforceable Translation output, so it is not a Capture-stage Agentic Refinement.
+IR: The natural-language intent goes directly to the generator, which emits deployable YAML; no user-only intermediate artifact exists (fused pipeline).
+Evidence: ""The Generator takes a natural language intent and produces an initial candidate NetworkPolicy YAML""; ""Its system prompt includes the Kubernetes NetworkPolicy schema""; ""The candidate YAML is submitted to the Kubernetes API server""."
+shokouhi2026agentic,"Agentic AI for Intent-driven Optimization in Cell-free O-RAN (Shokouhi & Wong, IEEE ICC 2026)",General,LLMs,Prompt-based Inference,Constraint-based,"Family: A GPT-5 supervisor agent translates the operator's natural-language intent into objectives.
+Sub: The supervisor's behavior and output format are set by a developer message, without weight updates. QLoRA adapters belong to the near-RT agents that turn objectives into control parameters (Translation).
+IR: An objective function with constraints (e.g., minimize active O-RUs; per-user rate bounds) that enters the optimization directly.
+Evidence: ""The supervisor agent receives the operator intent, translates it into specific objectives""; ""a developer message to specify the expected behavior and output format""; ""trained a QLoRA adapter for each near-RT agent"".
+Secondary: Schema-based."
+khaldi2026agentic,"Agentic-AI Framework for Integrated Design, Implementation, Testing, and Operation of Digital Twin Networks (Khaldi, Lehmann, Ghita & Trick, IEEE OJCOMS 2026)",General,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: A plain-language use-case description is processed by LLM agents; a structured template is an optional secondary channel.
+Sub: Role-specific prompts without fine-tuning. The formalized specification is reviewed by the stakeholder and revised by the Use-Case Agent over several iterations before handoff.
+IR: The approved use-case specification and KPI table.
+Evidence: ""the placeholder raw_input is substituted with the operator-provided text""; ""formalized specification is then reviewed by the human stakeholder""; ""refine it over multiple iterations with the Use-Case Agent""."
+chatzistefanidis2026agoran,"AGORAN: An agentic open marketplace for 6G RAN automation (Chatzistefanidis et al., Computer Networks 2026)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The Human-to-Broker Interface collects a use case and numeric SLA bounds as predefined fields, plus a free-text context; the optimization problem is built from the fields.
+Sub: Fields are placed by fixed roles into a proposal; the free text is attached to the stakeholder's negotiation agent.
+IR: A structured proposal holding the use case and constraint set; Pareto-optimal offers are computed afterwards by the broker.
+Evidence: ""triple intent input (use-case, numeric SLAs, and natural-language context)""; ""forwards the specified use-case and constraint set to the SRB as structured proposals""; ""The use-case and constraint bounds are used to define the optimization problem"".
+Secondary: Constraint-based (the numeric bounds define the optimization constraints)."
+abbas2024ai,"AI-Driven Data Analytics and Intent-Based Networking for Orchestration and Control of B5G Consumer Electronics Services (Abbas et al., IEEE Trans. Consumer Electronics 2024)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Users enter abstract QoS requirements in a GUI intent form; natural-language processing is left to future work.
+Sub: Form fields (service type, QoS requirements) map deterministically to resource requirements.
+IR: A structured record of service and QoS requirements; the VNF forwarding graph built with the resource database is Translation.
+Evidence: ""users need to insert abstract QoS requirements from the GUI portal, and the system converts these service QoS into slice templates or policies""; ""including data rate (downlink and uplink throughput), latency, slice ID, and slice type""; ""our mechanism still needs to extend intent translation through natural language processing""."
+salmi2026ainative,"AI-Native O-RAN Architectures for 6G: Toward Real-Time Adaptation, Conflict Resolution, and Efficient Resource Management (Salmi et al., IEEE TNSM 2026)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Operators express objectives in natural language, interpreted by an LLM orchestrator.
+Sub: Structured prompts without fine-tuning; recalling past queries is not retrieval of request–output examples.
+IR: The orchestrator classifies and routes the request; modules build prompts with KPIs from the context aggregator and produce policy logic with that context, so no user-only representation reaches Translation.
+Evidence: ""It classifies the input intent, delegates the request to the appropriate module, and manages dialogue flow""; ""processes structured prompts and returns natural language explanations, code templates, or policy logic""; ""retrieving relevant KPIs from the Context Aggregator"".
+Note: the LLM module is described at architecture level."
+wang2024autonomous,"An Autonomous Deployment Mechanism for AI Security Services (Wang, Zhou, Li & Yan, IEEE Access 2024)",Security,Structured Interfaces,Hierarchical Goal Decomposition,Schema-based,"Family: The only concrete input form is a fixed-field tuple (Iid, Conditions, Object, Action, SLR). ""GUI or NLP"" is mentioned, but NLP appears only by citation and the prototype uses preset intents.
+Sub: The Action is mapped to capabilities via the security intent mapping graph and refined into sub-capabilities by a predefined security capability model, i.e., a predefined hierarchy refines the goal into required capabilities.
+IR: The security capability requirement (Iid, Conditions, SLR, SCs), a fixed-field record sent to the decision plane.
+Evidence: ""UserSecurityIntent ⇒ (Iid, Conditions, Object, Action, SLR)""; ""The required security capabilities are refined into various security sub-capabilities (SCs) based on the security capability model and Object""; ""users often lack an understanding of the network's available security capabilities""."
+fuad2024intent,"An Intent-based Networks Framework based on Large Language Models (Fuad et al., IEEE NetSoft 2024 – IBN Workshop)",General,Classical NLP,Rule-based Extraction,Schema-based,"Family: Free natural language is processed by a spaCy pipeline; the LLM only generates configurations from the resulting JSON context (Translation), despite the title.
+Sub: Keyword-based classification and rule-based entity extraction; the input need not follow a grammar.
+IR: A generated JSON context file holding the extracted and user-completed entities.
+Evidence: ""We used a simple keyword-based approach using spaCy library""; ""We employ a rule-based approach using spaCy and extend its built-in entity types""; ""reports back to the user when the request is not completed"".
+Secondary: Direct-text (the raw intent is also placed in the prompt)."
+pizzato2024intent,"An intent-based solution for network isolation in Kubernetes (Pizzato, Bringhenti, Sisto & Valenza, IEEE NetSoft/SecSoft 2024)",Security,Formal Language,Policy Language Specification,Schema-based,"Family: Users write intents directly in a dedicated high-level policy language (extended MSPL) rather than natural language.
+Sub: Permit/deny communication statements over source–destination selectors, without inference semantics.
+IR: Structured MSPL policy records that are harmonized and then translated into CNI-specific Network Policies, so not consumed as-is.
+Evidence: ""the security intents are expressed using an extended version of the MSPL""; ""a generic syntax that abstracts the vendorspecific configuration""; ""Authorization intents: they are defined by each user to represent their authorization policies"".
+Secondary: Structured Interfaces (concrete serialization not shown)."
+gu2024intent,"An Intent-Based System for Software-Defined Vehicles in 5G Mobile Networks (Gu, Ahn, Hong, Shen & Jeong, ICTC 2024)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Intents are entered through a web/app interface. The framework says intents are ""expressed in natural language"", but no NL processing is designed or implemented; the NLP/deep-learning sentence is in Related Work and describes Lumi. The implemented translation is a fixed mapping.
+Sub: Fixed mapping from an intent to a high-level policy.
+IR: XML-based high-level policy handed to the SDV Controller, which translates it into a low-level policy (I2NSF pattern).
+Evidence: ""SDV User: It is typically accessed via a web-browser interface, allows SDV administrators to input network intents""; ""The Cloud Server receives these intents and translates them into XML-based high-level policies""; ""Note that for simplicity, the intent translation was performed by the fixed mapping form an intent to an application policy""."
+li2025antireconnaissance,"Anti-Reconnaissance Routing in Non-Cooperative Networks via Reinforcement Learning (Li et al., IEEE CRESS 2025)",Security,LLMs,Prompt-based Inference,Schema-based,"Family: A pretrained LLM parses free natural language.
+Sub: No weight update or retrieval of example pairs is described; asking the user for missing detail is interactive parameter completion, not an evaluate-and-correct loop.
+IR: The LLM normalizes the request into a fixed-schema context tuple (objective weights and hard constraints) consumed by the PPO path selector. The handoff is a schema record and the consumer is an RL agent, not a solver.
+Evidence: ""performs semantic parsing of the user input""; ""normalizes the unstructured text into a fixed-schema output""; ""it outputs a context tuple""; ""will prompt the user for more detailed information"".
+Secondary: Constraint-based (the tuple carries constraints that shape the reward and mask)."
+khan2021applying,"Applying RouteNet and LSTM to Achieve Network Automation: An Intent-based Networking Approach (Khan, Abbas, Rivera, Muhammad & Song, APNOMS 2021)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Input is limited to fields of a GUI orchestration portal and a closed set of service types (GBR, non-GBR, IoT).
+Sub: The selected service type and requirements map deterministically to catalog templates.
+IR: A structured service request; catalog lookup and slice-template generation use network plans, so they are Translation.
+Evidence: ""using a high-level GUI-based (Graphical User Interface) service orchestration portal""; ""accepts three types of service requests""; ""upon receiving intents, registers it to the catalog repository""."
+parashar2026aspbased,"ASP-Based Policy Fusion for Vendor-Agnostic Security Orchestration in Hybrid Multi-Cloud (Parashar, Pappu, Suvarna & Sharma, IEEE LANMAN 2026)",Security,Structured Interfaces,Rules-based Mapping,Constraint-based,"Family: The user supplies a fixed-field YAML policy intent; the user does not write ASP, so this is not Formal Language / Logic-based Specification.
+Sub: The parser maps YAML fields deterministically to ASP facts.
+IR: The ASP facts are produced from user data only and go directly to the Clingo solver, i.e., constraints passed directly to a solver.
+Evidence: ""We define a vendor-agnostic policy intent format in YAML""; ""The intent parser translates YAML policies into ASP facts for reasoning via Clingo 5.8""; rule body ""allow_intent(S,D,P,Pt)"".
+Secondary: Schema-based (the YAML document the user writes)."
+alhaj2026aura,"Aura-Translation: Intent Translation for Autonomous Security Management in O-RAN (Al Haj, Alameddine & Assi, 2026)",Security,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: A pretrained generative model extracts the intent tuple from free natural language.
+Sub: (1) Domain-specific prompts without fine-tuning. (2) An NLI check evaluates the extracted tuple and a refined prompt regenerates it before the knowledge-graph query, which is an evaluate-and-correct loop on the Capture artifact.
+IR: A three-field JSON tuple; the 3GPP intent model is filled from the O-RAN knowledge graph, so it is Translation output.
+Evidence: ""a refined prompt—containing the original user intent, the extracted tuple""; ""issued to the LLM to generate a corrected tuple""; ""produce outputs in a structured JSON""; ""accepted and forwarded to the knowledge graph extractor""."
+santos2025autopgt,"AutoPGT: LLM-Driven Automated Policy Generation for Securing Industrial Control Systems (Santos, Esiner, Tefek, Caesar & Mashima, IEEE SmartGridComm 2025)",Security,LLMs,Prompt-based Inference,Programmatic,"Family: Free natural language converted by a pretrained generative model; manual GUI template creation is a secondary channel.
+Sub: Few-shot examples and explainability instructions in the prompt, without weight updates. Agentic Refinement is not marked: the user reviews and edits the tree once, and there is no system evaluate-and-correct cycle.
+IR: A condition→action policy tree that is analyzable and compiled into policy code; XML is its serialization.
+Evidence: ""representative few-shot examples, and enforced explainability""; ""The generated tree, along with a line-by-line explanation, is shown to the user for review""; ""the tree is saved as a security policy template written in XML""; ""the Logic Block lists the Conditions and Actions from the policy tree"".
+Secondary: Schema-based (XML)."
+maxenti2026autoran,"AutoRAN: Automated and Zero-Touch Open RAN Systems (Maxenti et al., IEEE Trans. Mobile Computing 2026)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: A pretrained LLM (Qwen 2.5) in an agentic setup interprets the operator's request.
+Sub: Instructions and tool definitions, without weight updates. The loop that feeds back misconfiguration reports builds the deployment configuration (parameters specialized to infrastructure and checked against the compatibility graph), which is Translation output, not a Capture artifact.
+IR: The request enters the LLM together with descriptions of the use case, infrastructure and compatibility graph; the first structured artifact is already infrastructure-specific.
+Evidence: ""we opt for using a pre-trained LLM (Qwen 2.5) in an agentic setup""; ""this includes describing the use-case, the infrastructure, the compatibility graph""; ""the LLM is fed back with reports on misconfigurations and missing configuration fields""; ""the validity is verified by ensuring that the configuration matches the compatibility graph"".
+Secondary: Schema-based (parameter dictionary)."
+murcia2025bastion,"BASTION: Beyond automated service and security orchestration for next-generation networks (Bernabé Murcia, Zarca & Skármeta, Computer Networks 2025)",General,Formal Language,Policy Language Specification,Schema-based,"Family: Users express policies in a dedicated policy language (HSPL-OP/MSPL-OP); the Policy Manager checks well-formedness, and experienced users can write the language directly.
+Sub: Declarative subject–action–object security requirements without own inference semantics.
+IR: A well-formed HSPL-OP/MSPL-OP policy object that the Policy Manager refines with infrastructure information.
+Evidence: ""Policies can be provided proactively by administrators via graphical tools, typically in HSPL-OP format""; ""HSPL-OP models high-level security requirements, priorities and dependencies""; ""Bob is authorized to access Internet traffic once he has been authenticated""."
+rivera2023blockchain,"Blockchain and Intent-Based Networking: A Novel Approach to Secure and Accurate Network Policy Implementation (Díaz Rivera et al., 2023)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Administrators compose a policy from predefined components (roles, service, provider) in a web portal; no free text or formal language.
+Sub: Portal inputs map deterministically to smart-contract fields.
+IR: The policy tuple P(p, R, s, π, h) recorded on-chain; an event listener later turns it into network configuration.
+Evidence: ""the IBN Web Portal primarily acts as a visual interface for system administrators""; ""its ability to create service policies""; ""a policyId p, a set of roleIds R, a serviceId s, a provider address""."
+antonakoglou2025camino,"CAMINO: Cloud-native Autonomous Management and Intent-based Orchestrator (Antonakoglou et al., EuCNC/6G Summit 2025)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The intent is a schema-conformant JSON deployment document submitted through an API; no natural or formal language.
+Sub: The Domain Manager reads the document's fields deterministically; topological ordering and blueprint-based configuration are Translation.
+IR: The JSON deployment intent with services, versions, QoS levels and dependency labels.
+Evidence: ""The order and interdependencies can either be chosen by an end-user or automatically generated as part of a service brokering""; ""using the ""after"" label to control the deployment sequence""; ""the Domain Manager performs a basic topological ordering""."
+venanzi2025collective,"Collective intelligence-based service migration enabling zoom-in functionality within Industry 5.0 (Venanzi et al., Internet of Things 2026)",General,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: Free natural language converted into JSON/YAML by pretrained generative models (DeepSeek-R1 8B, Gemma3 12B).
+Sub: The model is prompted with the request, a JSON template and examples, without fine-tuning. When the schema check fails, the translator regenerates the intent JSON before it is handed on.
+IR: A JSON file conforming to a predefined schema (resource constraints and a goal), described by the authors as an intermediate representation.
+Evidence: ""a natural language input, simulating an operator request, a requested JSON template, and a list of examples""; ""If any ambiguity is detected, the system prompts the user to provide the missing or unclear details""; ""the GPU constraint has to be an integer""."
+iorio2023computing,"Computing Without Borders: The Way Towards Liquid Computing (Iorio, Risso, Palesandro, Camiciotti & Manzalini, IEEE Trans. Cloud Computing 2023)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Constraints are submitted as declarative Kubernetes resources (selectors, affinities, custom resources) through the API.
+Sub: Each requirement is mapped to standard Kubernetes mechanisms by a fixed mapping.
+IR: Kubernetes resource specifications carrying namespace offloading settings and workload constraints.
+Evidence: ""each requirement is mapped to standard Kubernetes mechanisms""; ""administrators can enable remote offloading, along with resource reflection, on a per-namespace basis""; ""a specific subset of remote clusters through their distinguishing labels"".
+Note: intent-driven operation is a design principle; the paper's focus is the multi-cluster infrastructure."
+alemany2025defining,"Defining Intent-Based Service Management Automation for 6G Multi-Stakeholders Scenarios (Alemany et al., IEEE OJCOMS 2025)",General,Classical NLP,(not specified due to lack of evidence),Schema-based,"Family: The illustrated channel is a free natural-language request processed by an NLP Intent Interpreter that identifies and classifies key words; no generative model is described.
+Sub: The technique behind keyword identification and classification is not specified.
+IR: An intent data object based on standardized information models (3GPP) with expectation and target items.
+Evidence: ""Deploy a surveillance cobot application service with zero-downtime in campus east""; ""using Natural Language Processing (NLP), which allows to identify and obtain the key words and classify them to compose the proper intent data object based on the standardized information models such as the one from the 3GPP"".
+Note: the Intent Interpreter is described at architecture level."
+settanni2024dynamic,"Dynamic Security Provisioning for Cloud-Native Networks: An Intent-Based Approach (Settanni, Zamponi & Basile, IEEE CSR 2024)",Security,Formal Language,Controlled Natural Language Specification,Schema-based,"Family: The administrator writes intents directly in an extended Nile language with an ad hoc grammar; the parser first validates syntax. NL-to-intent mapping with LLMs is stated as ongoing work.
+Sub: Nile-style language with a published grammar; non-conforming input is rejected at parse level.
+IR: The artifact handed to the Security Manager is an IntentEntity data-class instance produced by the interpreter.
+Evidence: ""It first validates the intent's syntax correctness""; ""we repurposed an engine developed during a previous research project with an ad hoc grammar for intent description""; ""The interpreter takes the textual representation as input and produces a model, specifically the data class of the intent, known as IntentEntity"".
+Secondary: Programmatic (the Nile-derived input language is itself analyzable)."
+ditommaso2026edgent,"Edgent: Towards an Agentic AI Framework for eBPF-Based Service Deployment and Orchestration at the Edge (Di Tommaso et al., 2026)",Security,LLMs,Prompt-based Inference; RAG,Direct-text/Unstructured,"Family: Free natural language handled by a pretrained LLM Supervisor.
+Sub: Prompting plus retrieval of historically verified execution traces by semantic similarity to the user intent, injected as few-shot examples.
+IR: The natural-language request goes to the Supervisor, which builds the execution graph using worker and MCP-tool context. Because the graph is produced with system context, it is Translation output, not a Capture IR.
+Evidence: ""dynamically injecting them as few-shot learning examples""; ""semantic similarity matching between the parsed user intent""; ""To navigate and mutate the execution graph""; ""Initializes a formal workflow of tasks assigned to specific downstream workers"".
+Secondary: Graph-based."
+tang2025endtoend,"End-to-End Edge AI Service Provisioning Framework in 6G ORAN (Tang et al., IEEE VTC2025-Fall)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Users describe their use case in a dialogue with a GPT-4.1 agent.
+Sub: Tools and instructions without fine-tuning. Clarifying questions complete missing parameters before any artifact is evaluated, so no Agentic Refinement; the subscription history supports personalized recommendation, not retrieval of request–output examples, so no RAG.
+IR: The agent processes the request together with AI-service details, subscription history and equipment information retrieved by its tools, so no user-only representation reaches Translation.
+Evidence: ""The agent is equipped with tools to interact with the end user, retrieve necessary knowledge (AI service details, user AI service subscription history, new use case demands, and user equipment information)""; ""the LLM agent queries this repository to find AI services that fulfil the functionality requirements""; ""the agent can perform personalized recommendations according to the user's historical subscriptions"".
+Secondary: Schema-based (""AI Function Demand"" and ""User Equip. Detail"" data)."
+jacobs2025establishing,"Establishing Trust for Using Natural Language for Intent-Based Networking (Jacobs et al., IEEE TNSM 2025)",General,Classical NLP,Structured Sequence Labelling,Programmatic,"Family: Free natural language from a chatbot is processed by task-trained sequence models; no pretrained generative model.
+Sub: Entities are labelled token by token (CRF with IOB tagging) and fill the intent slots.
+IR: The extracted entities are assembled into syntactically correct Nile intents, which are compiled into configurations.
+Evidence: ""Conditional Random Field (CRF) for entity labeling""; ""using Inside-Outside-Beginning (IOB) tagging for identifying entity values with multiple words""; ""assemble this unstructured extracted information into syntactically correct Nile intents"".
+Note: operator confirmation before deployment is an accept/reject gate."
+asif2025evaluating,"Evaluating Large Language Models for Optimized Intent Translation and Contradiction Detection Using KNN in IBN (Asif, Khan & Song, IEEE Access 2025)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: Free natural language translated by fine-tuned models; most compared models are pretrained generative LLMs (LLaMA3, GPT-2, Claude 2).
+Sub: The models are fine-tuned on the training set.
+IR: A JSON object with fields such as source, destination, encryption and protocols; contradiction detection and device-level outputs follow in Translation.
+Evidence: ""The training set is utilized to fine-tune advanced LLMs, including LLaMA3, BERT-bu, GPT2, BiLSTM with attention, and Claude2.""; ""The translated output is checked for contradictions with existing policies using a KNN classifier.""
+Secondary: Classical NLP / Encoder-based Extraction (BERT and BiLSTM are also compared)."
+sun2025experimental,"Experimental demonstration of local AI-Agents for lifecycle management and control automation of optical networks (Sun et al., JOCN 2025)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: Natural-language requests are turned into API calls by a locally fine-tuned LLM.
+Sub: Fine-tuned on API-calling chat prompts.
+IR: A JSON API-call record with arguments (e.g., source, destination, path, frequency, bandwidth, board mode); unspecified path and frequency are filled by the controller later.
+Evidence: ""The LLM is fine-tuned based on API-calling chat prompts""; ""translate human language requests into valid APIs with correct arguments""; ""AI-Agent A1 gives suggestions to the user and requests approval"".
+Note: user approval is an accept/reject gate."
+wu2025explainable,"Explainable Application Intent for Zero-Touch Networking: An Incorporation of Hypergraph and Transformer (Wu, Zou, Liwang, Ni & Wang, IEEE Trans. Communications 2025)",General,Structured Interfaces,(not specified due to lack of evidence),Graph-based,"Family: Users report application intents (APPIs) as a scenario, required functions and target performance metrics from a defined vocabulary; no NLP or LLM is described.
+Sub: The interface and the mapping of reported elements are not described.
+IR: Each APPI is a directed chain of functions and performance metrics with order and dependency, represented by APPI hyperedges.
+Evidence: ""the user describes and reports their APPIs to the management system""; ""a chain of the contained functions and performance metrics (with a certain order and dependency)""; ""E and Ê denote the sets of hyperedges for APPIs and NSRs, respectively"".
+Secondary: Schema-based. Note: the hypergraph-transformer mapping from APPI to network service requirements is Translation."
+li2026future,"Future Factories With 6G: Agentic AI and Cyber-Physical Digital Twins (Li et al., IEEE IoT-J 2026)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: An LLM-based agent interprets high-level user intents.
+Sub: Prompting with retrieved context, without weight updates. Retrieval returns technical document segments, not request–output examples, and digital-twin evaluation targets the generated pipelines (Translation), so neither RAG nor Agentic Refinement is marked.
+IR: The operator's query is concatenated with retrieved context into one prompt; candidate pipelines (DAGs) are Translation output.
+Evidence: ""capable of interpreting high-level user intents and reasoning about effective network orchestration actions""; ""The Top-l most similar document segments are retrieved""; ""the retrieved context is concatenated with the operator's original query to form an augmented prompt""."
+ifland2025genet,"GeNet: A Multimodal LLM-Based Co-Pilot for Network Topology and Configuration (Ifland et al., 2025)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Natural-language intents are handled by a pretrained multimodal model (GPT-4).
+Sub: Instructions without fine-tuning.
+IR: The intent enters the model together with the topology representation and device configurations, and the model outputs updated topology and configurations directly.
+Evidence: ""the assistant is initialized with instructions""; ""GPT4 is used without fine-tuning""; ""we explore GPT-4's ability to implement network intents without fine-tuning""."
+kou2025gia,"GIA: LLM-Enabled Generative Intent Abstraction to Enhance Adaptability for Intent-Driven Networks (Kou, Yang & Gurusamy, IEEE TCCN 2025)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: A natural-language intent is processed by a pretrained LLM.
+Sub: Prompt construction with a code-generation directive; appended knowledge triples are network knowledge, not request–output examples, so no RAG.
+IR: Knowledge triples relevant to the intent are appended to the prompt before the intent graph is generated, so the graph is produced with system context and belongs to Translation.
+Evidence: ""Consider the user intent I: ""Only employees in the financial department can access the financial servers"" … denoted initially as prompt x""; ""we select triples relevant to the user intent … and append them to x""; ""we enhance prompt x with a code-generation directive"".
+Secondary: Graph-based (the generated intent graph)."
+habib2026harnessing,"Harnessing the Power of LLMs, Informers and Decision Transformers for Intent-Driven RAN Management in 6G (Habib et al., IEEE TNSE 2026)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: The operator's natural-language intent (e.g., ""Increase energy efficiency by 30%"") is interpreted by a pretrained generative model.
+Sub: QLoRA fine-tuning on a custom dataset. The RAG module retrieves documents mainly for network-state queries, not request–output examples.
+IR: A record of intent type and magnitude per intent, used for validation and goal conditioning.
+Evidence: ""we fine-tune a Large Language Model (LLM) on a custom dataset using a Quantized Low-Rank Adapter (QLoRA)""; ""a target KPI (e.g., throughput, energy efficiency, delay)""; ""The model parameters θ are updated so as to improve classification accuracy for both type and magnitude.""
+Secondary: Constraint-based."
+wang2025lit,"Hierarchical Index Retrieval-Driven Wireless Network Intent Translation With LLM (Wang et al., IEEE Trans. Mobile Computing 2025)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: Free natural language is translated by a Policy Sequence Generator (LLM).
+Sub: Full-parameter fine-tuning with annotated data and operation manuals. Hierarchical retrieval from manuals serves the second model, which fills parameter values (Translation).
+IR: A structured policy sequence (PS) without parameter values, produced from the user intent at runtime without system context.
+Evidence: ""We trained the Policy Sequence Generator using an end-to-end full-parameter fine-tuning approach.""; ""online translation of user intents into structured PS""; ""it does not contain PVs"".
+Secondary: Direct-text."
+kim2020ibcs,"IBCS: Intent-Based Cloud Services for Security Applications (Kim et al., IEEE Communications Magazine 2020)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The I2NSF user (web page or software) produces a high-level policy conforming to the Consumer-Facing Interface YANG model; input is limited to predefined ECA fields.
+Sub: Interface inputs map deterministically to the data-model fields.
+IR: A YANG-conformant high-level security policy; the security controller's translator converts it into NSF-specific policies.
+Evidence: ""An I2NSF user is a software or web page""; ""For normalized data transfer to the security controller""; ""Source: Employees, Destination: SNS Websites, and Action: Drop""."
+dzeparoska2024intent,"Intent Assurance using LLMs guided by Intent Drift (Dzeparoska, Tizghadam & Leon-Garcia, 2024)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Natural-language intents are classified and formalized by GPT models.
+Sub: Few-shot examples in the prompt, without weight updates; the validator inspects the policy tree (Translation).
+IR: The policy generator receives the intent text together with the classifier's type label; the key:value formalization is used for KPI extraction and assurance.
+Evidence: ""3 consecutive LLM models (GPT), each trained via few-shot learning""; ""The output from the classifier, and the intent are then fed to the second LLM""; ""First, we instruct the LLM model to formalize intents into key:value pairs that capture the intent requirements. Then, we instruct the LLM to extract the KPIs from the formalized intent.""
+Secondary: Schema-based."
+zhou2026intentbased,"Intent-Based Automatic Security Enhancement Method Toward Service Function Chain (Zhou, Ji, You, Qiu, Zhao & Xu, IEEE TNSM 2026)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Despite the self-label ""security intent language model"", what is defined is a fixed-field structure (ServiceID, functional and non-functional requirement sets) that users fill in; no grammar or parser is shown.
+Sub: Capability labels in the Operation field map deterministically to NSFs by label matching.
+IR: The HLSR record; the embedding/optimization model built from it uses system knowledge and is Translation.
+Evidence: ""directly expressed in the form of security intent language model""; ""Operation consists of NSF capability labels""; ""FRk = (Object, Operation)"".
+Secondary: Formal Language (presented as a ""language""); Constraint-based for the IR (non-functional requirements become optimization constraints)."
+guo2025ian,"Intent-Based Autonomous Network Framework Guided by Large Language Model (Guo et al., IEEE Trans. Automation Science and Engineering 2025)",General,LLMs,Domain-Specific Fine-tuning,Direct-text/Unstructured,"Family: Free natural language is processed by a fine-tuned LLM.
+Sub: ChatGLM-6B fine-tuned on a dataset. Retrieval from device manuals supplies command constraints for command generation (Translation).
+IR: The intent goes directly into the fine-tuned model, which outputs deployable commands with manual context; no intermediate representation.
+Evidence: ""ITLLM is generated by fine-tuning the ChatGLM-6B model based on the dataset.""; ""match user intent and deployable commands""; ""device manuals serve as a crucial corpus""."
+tzanakaki2025intent,"Intent-based control and management framework for optical transport networks supporting B5G services empowered by large language models [Invited] (Tzanakaki, Anastasopoulos & Alevizaki, JOCN 2025)",General,LLMs,(not specified due to lack of evidence),Programmatic,"Family: A natural-language query is mapped to optimization code by a GPT-based decoder.
+Sub: The model is trained on the authors' code libraries, but whether a pretrained checkpoint is adapted is not stated.
+IR: An optimization model written in an algebraic modeling language (GAMS), built from code templates expanded to the intent's requirements.
+Evidence: ""The decoder part based on the GPT model is used to generate the response.""; ""we use as a training set the available code libraries developed in our previous works""; ""an optimization model written in general algebraic modeling system (GAMS)"".
+Secondary: Constraint-based."
+brodimas2025intent,"Intent-Based Infrastructure and Service Orchestration Using Agentic-AI (Brodimas, Birbas, Kapolos & Denazis, IEEE OJCOMS 2025)",General,LLMs,Prompt-based Inference; RAG,Direct-text/Unstructured,"Family: The Intent Decomposition Agent (IDA), a foundation LLM with a system prompt, handles the natural-language request.
+Sub: Prompting plus retrieval of similar past requests used as examples. Asking the user for additional information is parameter completion, not an evaluate-and-correct loop. QLoRA applies to YAML-producing agents (Translation).
+IR: The IDA reads the intent from the message state, and later agents read it as text and add network context via tools.
+Evidence: ""The IDA receives this input and consults the RAG-MCP-Tool to retrieve similar past requests. Based on these examples, the IDA formulates a plan""; ""the IDA can interrupt the operation of the framework in order to ask for additional information from the user""; ""The IDA processes the intent from the state's messages""."
+shen2026intentbased,"Intent-Based IoT Network Slicing for Smart Healthcare Systems: A Knowledge-Driven Multipath Resource Orchestration Framework (Shen, Zhang, Lee, Quasim & Wang, IEEE IoT Journal 2026)",General,LLMs,Domain-Specific Fine-tuning; Agentic Refinement,Schema-based,"Family: Clinicians' free-text requests are captured by a GPT-derived language model.
+Sub: Fine-tuned on paired requests and configurations. Ambiguities are scored for confidence and resolved through clarification requests before the template is enriched.
+IR: The initial medical service template (e.g., device type, priority) before knowledge-graph enrichment with patient and inventory data.
+Evidence: ""Fine-tuning uses 847 000 paired examples""; ""The system clears ambiguities with confidence scoring and interactive clarification requests""; ""network service layer descriptions corresponding to upstream healthcare intents and associated coarse-grained quality of service indicators"".
+Secondary: Direct-text."
+mekrache2024management,"Intent-Based Management of Next-Generation Networks: an LLM-Centric Approach (Mekrache, Ksentini & Verikoukis, IEEE Network 2024)",General,LLMs,Prompt-based Inference; RAG; Agentic Refinement,Direct-text/Unstructured,"Family: Users state intents in natural language; an LLM (CodeLlama) decomposes them into domain sub-intents.
+Sub: (1) Prompting without weight updates. (2) The most similar historical question–answer pairs are retrieved by embedding similarity as few-shot examples. (3) A structure validator checks required parameters and asks the user to correct the intent until it is valid, after which the decomposition is regenerated.
+IR: Natural-language sub-intents per domain; domain handlers translate them into the ILI JSON.
+Evidence: ""historical examples are retrieved from the central decomposition KB""; ""representing the most similar historical examples""; ""the structure validator request the user to correct the Intent""; ""translates natural language to ILI as expected by LMS""."
+zheng2025intent,"Intent-Based Multi-Cloud Storage Management Powered by a Fine-Tuned Large Language Model (Zheng, Tao, Qin, Wang & Ma, IEEE Access 2025)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: Free natural language is classified and parsed by a fine-tuned ChatGLM4.
+Sub: Fine-tuning on intent recognition, NER and user-feedback datasets. Missing parameter values are validated against real-time cloud data, which is Translation, not Agentic Refinement.
+IR: Storage-mode and task labels with extracted parameter values that fill policy-tree slots.
+Evidence: ""fine-tunes ChatGLM4 using datasets such as IR, NER, and UF""; ""Intent Ib is mapped to one or more storage modes""; ""The specified LLM assists users in providing missing parameter values. These values are validated against real-time data""."
+martini2023intent,"Intent-based network slicing for SDN vertical services with assurance: Context, design and preliminary experiments (Martini, Gharbaoui & Castoldi, Future Generation Computer Systems 2023)",General,Structured Interfaces,Rules-based Mapping,Programmatic,"Family: Vertical users specify a few operational objectives in a GUI; users are not shown writing Nile directly.
+Sub: The intent framework maps the GUI values deterministically into the intent statement.
+IR: An intent statement in an extended Nile grammar, parsed and compiled into configuration constraints and descriptors.
+Evidence: ""only need to specify few operational objectives of the intent they want to deploy (e.g., throughput, topology, number of VFs)""; ""we rely on the Network Intent LanguagE (Nile) as an intent definition language"".
+Secondary: Formal Language (if users could write Nile directly)."
+lyu2026intentbased,"Intent-Based Networking Framework for IoMT Communications in Space–Air–Ground-Integrated Systems (Lyu, Basheer & Li, IEEE IoT Journal 2026)",General,Classical NLP,Encoder-based Extraction,Schema-based,"Family: Free natural language processed with pretrained encoders; no generative model.
+Sub: Intent classification (BERT-CNN) and span-based entity extraction (GlobalPointer) on encoder representations; separate models, so not Joint Intent Modeling, and span-based rather than sequence labelling.
+IR: A structured record of intent class and entities following a hierarchical entity schema.
+Evidence: ""Enhanced BERT-CNN architecture for medical intent classification""; ""Using transformer-based medical encoders""; ""framing entity recognition as a classification of global spans""."
+haqdad2026intentbased,"Intent-Based Networking With Deep Reinforcement Learning for Detecting Decreased Rank Attacks in Low-Power and Lossy IoT Networks (Haqdad et al., IEEE IoT-J 2026)",Security,Structured Interfaces,(not specified due to lack of evidence),Not specified,"Family: The paper states that the user enters the intent through a GUI.
+Sub: GUI fields and the mapping to policy rules are not described, so no sub-mechanism can be assigned.
+IR: No artifact between the GUI input and the detection policy rules is described; the DQN state is network observation, not an intent representation.
+Evidence: ""At the business layer, a user interacts with the GUI to input an intent that describes the DRA detection service with the desired QoS""; Algorithm 1: ""Provide high-level security intent as DRA detection""; ""Parse intents into policy rules for DRA detection""."
+ali2026intentbased,"Intent-Based Networking With QoS-Aware Routing in SDN Using AHP-Based AI Prioritization and Optimization (Ali et al., IEEE IoT Journal 2026)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Users give pairwise preferences over predefined QoS criteria; natural-language intents are mentioned but no NL mechanism is described.
+Sub: Preferences are placed into a pairwise comparison matrix over fixed criteria; AHP weights fixed criteria rather than decomposing a goal into sub-goals. A consistency check asks the user to revise preferences.
+IR: Structured QoS requirements (criteria weights).
+Evidence: ""A pairwise comparison matrix A is constructed based on user preferences over the defined criteria.""; ""translates them into structured QoS requirements""; ""Request user to revise preferences"".
+Secondary: Hierarchical Goal Decomposition."
+nahum2026intentbased,"Intent-Based Radio Scheduler for RAN Slicing: Learning to Deal With Different Network Scenarios (Nahum et al., IEEE Trans. Mobile Computing 2026)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Slice consumers declare requirements in an SLA as network performance attributes, and slice intents are delivered through a common intent model.
+Sub: Each slice intent maps to a fixed metric vocabulary.
+IR: Slice intents expressed as target values of predefined metrics.
+Evidence: ""The slice consumer declares the communication service requirements to the operator in an SLA through network performance attributes""; ""slice intents (requirements and goals) can be provided via a common intent model""; ""effective throughput, buffer latency, and packet loss rate"".
+Note: intents arrive from higher-layer intent managers; in the experiments they are simulation parameters."
+orozco2025intent,"Intent-Based Service Provisioning and Closed-Loop Automation for Cobot Service Migration in a Multi-Stakeholder Environment (Orozco et al., 2025)",General,Classical NLP,Rule-based Extraction,Schema-based,"Family: Free natural language entered in a WebUI is tokenized and searched for keywords; no pretrained generative model.
+Sub: Hand-defined keyword search; the input need not follow a grammar.
+IR: A 3GPP intent data model built from the extracted expectations and contexts.
+Evidence: ""a keyword search is implemented with one-hot encoding""; ""create a cobot service on warehouse 24 with zerodowntime"".
+Secondary: Structured Interfaces (the northbound interface also accepts the 3GPP model directly)."
+iqbal2025intent,"Intent-Driven Access Control List Configuration Based on Large Language Models (Iqbal & Afzaal, AMLDS 2025)",Security,Classical NLP,(no matching sub-mechanism),Direct-text/Unstructured,"Family: The paper calls its model an LLM, but self-labels are not binding. It describes a GPT-architecture model built from scratch and trained on ACL data, whereas the LLM family requires a pretrained generative model.
+Sub: End-to-end generative translation matches none of the Classical NLP subtypes.
+IR: The plain-English request goes directly to the model, which outputs ACL commands; no intermediate representation.
+Evidence: ""the authors have created this model from scratch based on GPT architecture specifically by training it on ACL-related data""; ""we have trained it exclusively on targeted data consisting of ACL rules""; but also ""These pre-trained weights then help in fine-tuning the model for accurate results"".
+Note: The paper is internally inconsistent about pretraining. The reported base configuration (vocabulary 50,257, 768 dimensions, 12 layers, 12 heads, GPT-2 encoding) matches GPT-2 small.
+Secondary: LLMs."
+zhang2024intent,"Intent-Driven Closed-Loop Control and Management Framework for 6G Open RAN (Zhang et al., IEEE IoT Journal 2024)",General,Classical NLP,(not specified due to lack of evidence),Schema-based,"Family: Free natural-language goals are processed by a recurrent model with morphological rules; no generative model.
+Sub: Whether the BiLSTM labels tokens, classifies jointly, or works with the rules in another way is not stated.
+IR: A fixed-arity quintuple (Region, Attribute, Object, Operation, Result).
+Evidence: ""Long Short-Term Memory and morphological rules""; ""parsing the input intent goal into the form of a quintuple""; ""where <Region> describes the service identity"".
+Secondary: Constraint-based (the quintuples later enter an Event Calculus reasoner)."
+wang2025confucius,"Intent-Driven Network Management with Multi-Agent LLMs: The Confucius Framework (Wang et al., ACM SIGCOMM 2025)",General,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: Free natural language is translated into DSLs by foundation models (Llama, Claude, Gemini, GPT-4o).
+Sub: (1) Domain knowledge and user-provided few-shot examples in the prompt, without fine-tuning. (2) Generated outputs are parsed and validated, and errors are fed back for regeneration.
+IR: Schema-defined data objects of existing tools (e.g., relational design objects).
+Evidence: ""We design our approach to work effectively with foundation models that do not require fine-tuning""; ""few-shot CollectorExample objects""; ""ask follow-up questions to refine the user's instructions""."
+filinis2024intent,"Intent-driven orchestration of serverless applications in the computing continuum (Filinis et al., Future Generation Computer Systems 2024)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The intent is structured metadata attached to an application descriptor.
+Sub: Descriptor fields (targetRef, objectives, properties, measuredBy) map deterministically to scheduling parameters.
+IR: A descriptor record with named fields and nested measurement references.
+Evidence: ""the targeted application (description) is specified (under the ""targetRef"" field)""; ""a p95 compliance with a latency value of 15 ms""; ""the evaluation process is referenced (under the ""measuredBy"" sub-field)"".
+Secondary: Constraint-based (hard and soft constraints shape the optimization)."
+ooi2023intent,"Intent-Driven Secure System Design: Methodology and Implementation (Ooi et al., Computers & Security 2023)",General,Structured Interfaces,Rules-based Mapping,Graph-based,"Family: Users provide a service requirement file of components, relationships and constraints in a predefined format; no natural or formal language.
+Sub: Entities are taken over directly; rule-matched refinement of abstract components uses the knowledge base (Translation).
+IR: A topology graph of components and relationships annotated with security requirements.
+Evidence: ""composing the service requirement file according to the SecureWeaver format""; ""capturing the input requirement conceptually""."
+chowdhary2022intent,"Intent-Driven Security Policy Management for Software-Defined Systems (INTPOL; Chowdhary, Sabur, Vadnere & Huang, IEEE TNSM 2022)",Security,Formal Language,Policy Language Specification,Schema-based,"Family: The operator writes INTPOL intent rules in a dedicated policy notation (e.g., h1 ⊳ h5 allow, h2 ⋈ h4 never-reach).
+Sub: Permit/deny statements between endpoints, without own inference semantics.
+IR: Parsed INTPOL rule records. The LTL formula is produced only for the bounded-model-checking branch together with topology, which is verification and outside Capture; the intent itself is passed to the controller.
+Evidence: ""the intent is converted into a formal logic formula (2a). The Bounded Formal Model utilizes the network topology information""; ""The intent is passed to the SDN controller (4) to create an SDN controller-specific intent""; ""The INTPOL intent rules translates the security policies into the REST API call format"".
+Secondary: Constraint-based."
+provvedi2026intentllm,"Intent-LLM: A Framework for Automated Network Configuration Through Code Generation (Provvedi, Seidenari, Picano & Fantacci, IEEE TCCN 2026)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Natural-language intents are mapped to code by a pretrained LLM.
+Sub: API documentation and a fixed set of query–code examples in the prompt, without fine-tuning.
+IR: The intent and API documentation go to the model, which generates a program run in the simulator (Translation output).
+Evidence: ""the user expresses the intent and the LLM maps the query into Python code""; ""without requiring task-specific fine-tuning""; ""representative query–code pairs""."
+akbari2025intentcontinuum,"IntentContinuum: Using LLMs to Support Intent-Based Computing Across the Compute Continuum (Akbari, Grundy, Cheema & Toosi, 2025)",General,Structured Interfaces,(not specified due to lack of evidence),Schema-based,"Family: The intent is a numeric SLO target per application; the LLM (GPT-4o) is used for root-cause analysis after violations (Assurance).
+Sub: How SLOs are entered and mapped is not described.
+IR: Per-application SLO target values.
+Evidence: ""Users can define specific SLOs for their application""; ""When a violation of the predefined intent occurs""; ""GPT-4o to conduct a comprehensive root cause analysis""."
+mehmood2025knowledge,"Knowledge-Driven Intent Life-Cycle Management for Cellular Networks (Mehmood, Kralevska & Palma, IEEE TNSM 2025)",General,Classical NLP,Structured Sequence Labelling,Graph-based,"Family: Free natural-language expressions with domain terms; no pretrained generative model.
+Sub: Named-entity recognition with a hidden Markov model bootstrapped from predefined context terms.
+IR: A service intent template expressed as RDF triples; missing parameters are completed by knowledge-graph link prediction (Translation).
+Evidence: ""using a hidden markov model (HMM)""; ""are two entities recognized by our trained NER model""; ""the NER and generation of the service intent template""."
+lee2025kubescribe,"KubeScribe: LLM-Driven Automation of Runtime Security Policies in Cloud-Native Environments (Lee & Nam, ICTC 2025)",Security,LLMs,Prompt-based Inference,Schema-based,"Family: A pretrained LLM parser interprets free natural-language prompts.
+Sub: No fine-tuning of the parser; schema-conformant output via prompting. QLoRA belongs to the second, policy-synthesizing LLM (Translation), and the regeneration loop works on the policy, so neither is a Capture sub-mechanism.
+IR: An Intent Instance conforming to a predefined JSON Schema; log-based enrichment afterwards is Translation.
+Evidence: ""Leveraging a pre-trained LLM, the parser performs semantic interpretation""; ""an Intent Instance aligned with a predefined JSON Schema""; ""the target engine, namespace, labels, network direction, and intended enforcement action""."
+kim2025kubeteus,"KUBETEUS: An Intelligent Network Policy Generation Framework for Containers (Kim, Park & Lee, IEEE INFOCOM 2025)",Security,Classical NLP,Encoder-based Extraction,Schema-based,"Family: In user mode, the first component that interprets the natural-language intent using user information only is a BERT-based NER classifier (an encoder). The LoRA-fine-tuned LLM runs only after the real-time cluster state is added, so it belongs to Translation.
+Sub: Token-level entity extraction with a pretrained (frozen) BERT encoder plus a trained classifier.
+IR: The set of typed entities (13 types) that drives the cluster query and prompt calibration.
+Evidence: ""the prompt processor, equipped with an entity classifier based on Bidirectional Encoder Representations from Transformers (BERT), … identifies the necessary entities from the input sentence""; ""utilizes a pre-trained BERT-base model (110M parameters), with the weights frozen""; ""The intent prompt is refined through the NER process described above and then transformed into a network policy using an LLM"".
+Secondary: LLMs / Domain-Specific Fine-tuning / Direct-text (the paper's self-presentation)."
+sun2026large,"Large Language Model-Empowered Resource Allocation in Intent-Driven Wireless Networks (Sun et al., IEEE TCCN 2026)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: The administrator's natural-language request is interpreted by an instruction expert built on a pretrained LLM.
+Sub: LoRA instruction adapters trained by distillation and feedback stages; feedback acts at training time, not as a runtime loop.
+IR: An instruction format stating the location and number of network states and resources; network state enters later in the policy expert.
+Evidence: ""predicts the next instruction token based on the task request token sequence""; ""LoRAbased instruction adapters""; ""request-instruction dataset""."
+mongaillard2024large,"Large Language Models for Power Scheduling: A User-Centric Approach (Mongaillard et al., 2024)",General,LLMs,Prompt-based Inference,Schema-based,"Family: Voice or text requests are interpreted by Llama 3 agents.
+Sub: Hard prompting with a curated list of optimization problems (OPs), without fine-tuning.
+IR: The OP type chosen from a list plus parameters extracted from the request; the complete OP, filled with system data such as prices, is Translation.
+Evidence: ""selecting an LLM model (Llama 3 in this paper) and utilizing hard-prompting""; ""an OP type within a list of OPs""; ""the arguments are the parameters of the OP type"".
+Secondary: Constraint-based."
+lira2025large,"Large Language Models for Zero Touch Network Configuration Management (Lira, Caicedo & da Fonseca, IEEE Communications Magazine 2025)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Administrators give natural-language intents to a pretrained model (Zephyr-7B-beta).
+Sub: Role-based prompts without weight updates; fine-tuning is mentioned only as a possible extension.
+IR: The classification prompt outputs only a type label; the first structured definition is produced with the network status in the prompt (Translation).
+Evidence: ""The system of the Requirement Classification Prompt identifies the type of Intent""; ""Initially, it uses the classification prompt to detect the configuration type received as input""."
+asif2025leveraging,"Leveraging Cognitive Machine Reasoning and NLP for Automated Intent-Based Networking and e2e Service Orchestration (Asif, Khan & Song, IEEE Access 2025)",General,Classical NLP,(not specified due to lack of evidence),Schema-based,"Family: Voice or text intents are processed by RASA NLU; no pretrained generative model.
+Sub: The NLU components (classifier, entity extractor, joint model) are not named.
+IR: The recognized intent class and extracted entities, matched to predefined intents and service templates.
+Evidence: ""Users input intents through voice or text commands""; ""The NLU module identifies the intent and extracts relevant entities""; ""converting unstructured input into structured data""."
+adanza2025leveraging,"Leveraging generative AI for intent-based networking operations in network slices (Adanza et al., Computer Networks 2025)",General,LLMs,Prompt-based Inference; RAG,Schema-based,"Family: An LLM agent with RAG interprets chat requests and triggers intent creation; keyword and numeric mapping tables only convert qualitative values.
+Sub: (1) Prompting without weight updates. (2) A RAG set of 240 sample utterances showing which operation each request corresponds to. Agentic Refinement is not marked: the user reviews and approves the summary.
+IR: A JSON intent built from the extracted KPIs and location parameters, conforming to the controller's intent standard.
+Evidence: ""a LLM agent integrated with a cloud-native SDN controller (ETSI TeraFlowSDN) designed with Retrieval-Augmented Generation (RAG) capabilities""; ""the LLM takes advantage of a set of 240 sample utterances""; ""The user reviews the summary to confirm that it accurately reflects their request""."
+fontana2025leveraging,"Leveraging LLM-Powered Intelligent Chatbots for Intent-Based Networking in 5G Modem Reconfiguration (Fontana, Berardi, D'Urso, Sciarrone & Martini, IEEE NetSoft 2025)",Security,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Free natural language handled by the OpenAI GPT API.
+Sub: Prompt template without fine-tuning. RAG is not marked: it retrieves the modem manual and ETSI AT-command standard (domain knowledge), not request–output pairs; the intent database is a cache that returns prior results. Agentic Refinement is not marked: the ""continuous refinement"" works on the generated configuration script (Translation output) together with the user.
+IR: The user's prompt, augmented with retrieved documents, goes to one model that outputs a shell configuration script.
+Evidence: ""the prompt of the user containing the intent gets augmented with the context provided by the RAG""; ""the Bot generates the scripts that can be used to configure the modems and assists the user in creating a configuration, through a process of continuous refinement""; ""if the similarity is above 80%, the query will get returned from the cached result""."
+nam2025llmbased,"LLM-Based AI Agent for VNF Deployment in OpenStack Environment (Nam, Van Tu & Hong, IEEE/IFIP NOMS 2025)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: A human-written natural-language procedure document (MOP) is processed by pretrained LLMs.
+Sub: In-context learning instead of fine-tuning; error feedback acts on generated code (Translation).
+IR: The MOP goes directly to the LLM, which generates executable Python code for OpenStack APIs.
+Evidence: ""due to the absence of an appropriate dataset, in-context learning was employed""; ""We used the MOP as part of the input prompt and provided it to the LLM""."
+habib2025llm,"LLM-Based Intent Processing and Network Optimization Using Attention-Based Hierarchical Reinforcement Learning (Habib et al., IEEE WCNC 2025)",General,Classical NLP,Encoder-based Extraction,Schema-based,"Family: Although the paper calls the model an LLM, it describes a lightweight BERT (an encoder).
+Sub: The encoder classifies the intent type and extracts keywords.
+IR: A result set of classified type and keywords per intent.
+Evidence: ""a lightweight version of BERT""; ""a prompt that includes a few examples of intents with their corresponding types and keywords""; ""Each new intent's classified type and keywords are compiled into a result set.""
+Secondary: LLMs / Prompt-based Inference (the paper also describes few-shot prompting and generated responses)."
+dzeparoska2023policy,"LLM-based policy generation for intent-based management of applications (Dzeparoska, Lin, Tizghadam & Leon-Garcia, CNSM 2023 AnServApp Workshop)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Natural-language intents are classified and turned into policies by GPT-based models.
+Sub: Descriptions, definitions and examples in the prompt; model weights are not modified.
+IR: The policy generator receives the intent text with the classifier's type labels; no separate structured intent representation.
+Evidence: ""we do not modify the weights of the model, but instead provide descriptions, definitions, and usage examples as input to the model""; ""examples of intents and their corresponding intent types""; ""validate the policy tree obtained from stage 2"".
+Secondary: Schema-based."
+shastri2025llmdriven,"LLM-Driven Auto Configuration for Transient IoT Device Collaboration (Shastri et al., ACM/IEEE SEC 2025)",Security,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: Free natural language converted by pretrained generative models.
+Sub: (1) Policy definitions and type-selected example policies in the prompt, without fine-tuning (no similarity retrieval, so no RAG). (2) A schema-feedback loop and an LLM actor–critic semantic check evaluate the generated YAML against the user prompt and regenerate it.
+IR: Structured YAML grouping and access-control policies; the policy engine later checks them against system attributes (Translation).
+Evidence: ""a few example policies based on the policy type""; ""we implement an LLM-based actor-critic feedback loop""; ""asking it to validate that both hold the same semantics""; ""The structured scheme is defined as a class representation of the YAML file""."
+mekrache2024llm,"LLM-enabled Intent-driven Service Configuration for Next Generation Networks (Mekrache & Ksentini, IEEE NetSoft 2024)",General,LLMs,Prompt-based Inference; RAG,Direct-text/Unstructured,"Family: Natural-language intents are processed by Code Llama.
+Sub: (1) Instructions and few-shot examples, without fine-tuning. (2) Similar user intents and their approved NSDs are retrieved from the knowledge base as examples. The correction loop acts on the NSD, which is Translation output.
+IR: The intent and retrieved examples go directly to the model, which produces an NSD consumed by the NFVO.
+Evidence: ""historical examples are retrieved from the KB""; ""Your job is to create an NSD""; ""the LLM is requested to correct the NSD""."
+wang2026confgen,"LLM-Powered Intent-Driven Configuration Generation for Multi-Vendor Networks (Wang et al., IEEE TNSM 2026)",General,LLMs,Domain-Specific Fine-tuning,Direct-text/Unstructured,"Family: Command-level natural-language requests are turned into vendor commands by an LLM generator.
+Sub: The generator is adapted with LoRA. Retrieval returns vendor syntaxes, and clarification is triggered by mandatory slots of the retrieved syntax (Translation).
+IR: The intent and retrieved syntax enter the generator together; the output is a CLI command.
+Evidence: ""we apply LoRA (Low-Rank Adaptation)""; ""ConfGen first retrieves the most relevant k syntaxes""; ""Combining the intent and syntax, ConfGen finally generates the target command""."
+angi2025llnet,"LLNet: An Intent-Driven Approach to Instructing Softwarized Network Devices Using a Small Language Model (Angi, Sacco & Marchetto, IEEE TNSM 2025)",General,LLMs,Prompt-based Inference,Schema-based,"Family: Free natural language processed by a small pretrained generative model (Phi-3-mini).
+Sub: Few-shot examples in the prompt; the models are not re-trained. Topology matching and user approval are an accept/reject gate.
+IR: A machine-readable JSON object (e.g., goal, switch_id, ip_source) extracted from the intent only.
+Evidence: ""the human intent into a machine-readable JSON object""; ""we add working examples that serve as a guide""; ""This removes the need for fine-tuning""."
+braghin2025mimo,"MIMO: a Framework for Extensible and Flexible Intent-based Workload Meta-Orchestration (Braghin & Nedoshivina, MECC '25)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Intents are given as annotations of Kubernetes manifests following a predefined key pattern.
+Sub: Annotation keys map deterministically to a fixed set of topics.
+IR: Key:value annotation records; enrichment with cluster state is Translation.
+Evidence: ""specify intents as annotations of K8S manifests""; ""required to follow a simple pattern""; ""location constraint (line 7), throughput requirement (line 6)""."
+li2026multiagentic,"Multi-Agentic AI for Conflict-Aware rApp Policy Orchestration in Open RAN (Li, Wu & Simeonidou, University of Bristol)",General,LLMs,Prompt-based Inference; RAG,Direct-text/Unstructured,"Family: High-level objectives are interpreted by LLM agents (GPT-5).
+Sub: System prompts without fine-tuning, plus retrieval of previously successful intent–policy pairs. The Refinement Agent revises the candidate pipeline (Translation), not a Capture artifact.
+IR: The intent enters the reasoning agent together with the xApp registry, active policies and the conflict graph.
+Evidence: ""system prompt that explicitly defines the functional objective""; ""retrieving previously successful intent–policy pairs""; ""the conflict graph produced by the Perception Agent""; ""the candidate pipeline to be reviewed""."
+han2026multillm,"Multi-LLM Cooperation-Based Joint Intent-Driven Network Slicing and Resource Allocation (Han et al., IEEE Wireless Communications Letters 2026)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: The operator's request is interpreted by an Intent LLM (DeepSeek-R1-Distill-8B).
+Sub: Supervised fine-tuning followed by joint training; DPO for the allocation agent belongs to Translation.
+IR: Formatted network slice configurations (per-slice delay and bandwidth bounds) extracted by format.
+Evidence: ""we implement DeepSeek-R1-Distill-8B as Intent LLM""; ""we first pre-train Intent LLM in a Supervised Fine-tuning (SFT) manner""; ""According to the given format, we can directly extract the network slice configurations"".
+Secondary: Constraint-based."
+wang2024netconfeval,"NetConfEval: Can LLMs Facilitate Network Configuration? (Wang et al., Proc. ACM Netw. / CoNEXT 2024)",General,LLMs,Prompt-based Inference; Domain-Specific Fine-tuning,Schema-based,"Family: Natural-language requirements are translated into formal specifications by LLMs.
+Sub: GPT-4 is used with instructions and examples; the same Capture task is also evaluated with fine-tuned GPT-3.5-Turbo and CodeLlama-7B.
+IR: A data structure specifying reachability, waypoints and load-balancing policies.
+Evidence: ""each inference request should contain preliminary instructions""; ""a simple data structure to specify the reachability, waypoints, and load-balancing policies""; ""its corresponding formal specification"".
+Secondary: Constraint-based. Note: benchmark study; fine-tuning is an evaluated arm."
+hossain2025netintent,"NetIntent: Leveraging Large Language Models for End-to-End Intent-Based SDN Automation (Hossain & Aljoby, IEEE OJ-COMS 2025)",General,LLMs,Prompt-based Inference; RAG,Direct-text/Unstructured,"Family: Users express intents in natural language, translated by pretrained LLMs.
+Sub: Prompting plus input–output examples selected per query by a Max Marginal Relevance selector. Re-prompting acts on controller-specific JSON (Translation).
+IR: The intent and network context go directly to the model, which outputs controller-executable configuration.
+Evidence: ""we use the strategy called Max Marginal Relevance example selector. It ensures that the chosen examples are not only highly similar to the input query, but also maximally diverse""; ""input and expected output pairs for the intent translation task""; ""missing tags necessary for the target SDN controller""."
+han2025network,"Network CoPilot: Intent-Driven Network Configuration Updating for Service Guarantee (Han et al., IEEE INFOCOM 2025)",General,LLMs,Domain-Specific Fine-tuning,Direct-text/Unstructured,"Family: The operator's natural-language intent is processed by a pretrained Llama 2-7B core.
+Sub: LoRA matrices and encoders are trained.
+IR: The intent enters one model together with configuration files, topology and link measurements; the output is an updated configuration.
+Evidence: ""a fine-tuning approach called Low-Rank Adaptation (LoRA)""; ""trainable parameters specific to the configuration updating task""; ""natural language intent of the operator""."
+wang2026network,"Network Intent Decomposition and Optimization for Energy-Aware Radio Access Network (Wang et al., IEEE TVT 2026)",General,Not specified,(not applicable),Schema-based,"Family: The algorithm's input is an intent in natural language, but no NLP, LLM or form is described for turning it into the template, so the family cannot be determined.
+Sub: Not applicable without a family.
+IR: An intent ontology following the 3GPP intent template (expectation objects and targets); the KAOS network ontology is system knowledge used in Translation.
+Evidence: ""Input: An energy-aware network intent in natural language.""; ""if natural_intent is input then intent_ontology ← obtain Expectations""; ""According to 3GPP TS 28.312, an intent consists of multiple elements, referred to as the intent ontology""."
+abbas2021network_access,"Network Slice Lifecycle Management for 5G Mobile Networks: An Intent-Based Networking Approach (Abbas, Khan, Afaq & Song, IEEE Access 2021)",General,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Users enter slice QoS requirements through a web portal GUI.
+Sub: Portal fields map directly to slice requirement records.
+IR: A structured slice requirement record (QoS values, slice ID, category); the VNF forwarding graph built from the knowledge base is Translation.
+Evidence: ""The web portal provides the users (customers, mobile network operators, resource vendors) an easy way to input slice QoS requirements in the form of user intents."""
+sun2026neurosymbolic,"Neuro-Symbolic Intent-Based Intrusion Detection System for Internet of Medical Things (Sun et al., IEEE IoT-J 2026)",Security,Classical NLP,(not specified due to lack of evidence),Not specified,"Family: Administrator intents in natural language are encoded by a trainable generator network; no pretrained generative LLM is described.
+Sub: The parsing/encoding technique is not specified.
+IR: The symbolic rules are compiled with a predefined IoMT ontology (a knowledge base), so they are Translation output. The Parse(I) step yields ""structured representations"" whose form is not described.
+Evidence: ""Encode(I) maps natural language intents into a latent embedding space""; ""we use a neuro-symbolic compiler that converts parsed intents into formal rules … where Parse(I) extracts structured representations from raw intents and O denotes a predefined ontology""; ""a logical rule compatible with the ontology and reasoning formalism"".
+Secondary: Constraint-based."
+mcnamara2023nlp,"NLP Powered Intent Based Network Management for Private 5G Networks (Mcnamara et al., IEEE Access 2023)",General,Classical NLP,(not specified due to lack of evidence),Schema-based,"Family: The free-text request field is matched by a learned text-similarity model to registered operation descriptions; no generative model.
+Sub: Classification into a closed set of operations; the matching algorithm is not specified.
+IR: The selected operation with its parameters.
+Evidence: The intent message carries a free-text ""request"" and a ""parameters"" field, and the request is matched to functionality templates registered by components.
+Secondary: Direct-text."
+mekrache2025oss,"OSS-GPT: An LLM-Powered Intent-Driven Operations Support System for 6G Networks (Mekrache, Ksentini & Verikoukis, IEEE NetSoft 2025)",General,LLMs,Prompt-based Inference; Domain-Specific Fine-tuning,Direct-text/Unstructured,"Family: Unconstrained natural language is handled by pretrained generative agents.
+Sub: Assistant, Planner and Executor use in-context learning; the NSD generator is LoRA-fine-tuned. Endpoint retrieval is a capability catalogue, not request–output examples.
+IR: The Assistant passes the natural-language intent to the Planner, which reduces it to API calls using the endpoint descriptions.
+Evidence: ""It accepts natural language input I and responds in natural language output R""; ""trained solely on API specifications, directly selects and executes individual API calls, one by one""."
+abouelseoud2025practical,"Practical Implementation of Intent-Based Networking Using OpenDaylight and Rasa (Abouelseoud & El-Aasser, ICMISI 2025)",Security,Classical NLP,(not specified due to lack of evidence),Schema-based,"Family: Free natural language processed by Rasa NLU models trained on sample phrases; no generative LLM.
+Sub: The paper names no pipeline component (no DIET or joint model), only ""Rasa's machine learning models""; inferring Joint Intent Modeling from Rasa's defaults would code an unreported function.
+IR: A closed-set intent class (with parameters such as an interface name) that triggers an OpenDaylight custom action.
+Evidence: ""Rasa works by using natural language understanding (NLU) to process user inputs and match them to the appropriate intents""; ""Each intent is trained using a set of sample phrases … processed by Rasa's machine learning models""; ""The chatbot's intents are mapped to specific tasks""."
+hussein2025privacy,"Privacy-Preserving Intelligent Intent-Based Network Slicing for IoT Systems (Haj Hussein & Ibnkahla, IEEE IoT Journal 2025)",General,Not specified,(not applicable),Schema-based,"Family: An intent profiling system translates the user's high-level intent into a communication service request, but its input channel and method are not described.
+Sub: Not applicable without a family.
+IR: A communication service (CS) request from which the CSMF designs the network slice template.
+Evidence: ""The intent profiling system translates the high-level user intent into a service request""; ""The intent profiling system translates service-based intent into a CS request. Once a CS request is received, the E2E system function instantiates a CSMF""."
+asif2025ribn,"R-IBN: A reinforcement learning-based intent-driven framework for end-to-end service orchestration and optimization (Asif, Khan & Song, Computer Networks 2025)",General,LLMs,Domain-Specific Fine-tuning,Schema-based,"Family: Natural-language intents are translated by fine-tuned models; the best-performing are generative LLMs (LLaMA3, Claude2).
+Sub: The models are fine-tuned to translate intents into structured policies.
+IR: A structured policy object (service class, QoS thresholds, placement constraints) checked by KNN for contradictions.
+Evidence: ""combining Large Language Models (LLMs) for natural language intent translation, K-Nearest Neighbor (KNN) for contradiction detection"".
+Secondary: Classical NLP (BERT and RoBERTa are also compared); Constraint-based for the IR."
+mostafa2026rag,"RAG-Enabled Intent Reasoning for Application-Network Interaction (Mostafa, Abdelaziz, Elbamby & Bennis, EuCNC/6G Summit 2026)",General,LLMs,Prompt-based Inference,Direct-text/Unstructured,"Family: Application-domain natural language is interpreted by a pretrained reasoning model (o1-mini).
+Sub: Few-shot prompting without fine-tuning. Retrieval returns network documents (standards, configuration guides, service catalogues), not request–output examples; intent refinement is a single rewrite, not a loop.
+IR: The refined intent is still natural language; the structured network intent is generated with retrieved network knowledge (Translation).
+Evidence: ""translating high-level, application-specific intents into structured network intents that can be directly interpreted by the network""; ""Few-shot learning … trains the LLM through a very small number of examples via a prompt"".
+Secondary: Schema-based."
+natarajan2025rag,"RAG-inspired Intent-Based Solution for Intelligent Autonomous Networks (Natarajan, Diddigi & Bapat, COMSNETS 2025)",General,LLMs,Prompt-based Inference; RAG,Programmatic,"Family: Free natural language is translated into Nile by GPT-4.
+Sub: Few-shot prompting without training; contextually similar intent–Nile examples are retrieved from the dataset.
+IR: A Nile program produced from the intent and retrieved examples only.
+Evidence: ""With a small dataset and no training or fine-tuning, our method employs a few-shot prompting approach where contextually similar examples in the training dataset are identified""."
+kou2026safla,"SAFLA: Semantic-Aware Full Lifecycle Assurance for Intent-Driven Networks (Kou, Yang & Gurusamy, IEEE TCCN 2026)",General,Not specified,(not applicable),Schema-based,"Family: The intent is defined as a natural-language goal, but no capture channel or method is described; the paper's contribution is assurance.
+Sub: Not applicable without a family.
+IR: The forwarding intent is represented as a structured tuple (A, B, X).
+Evidence: ""The intent is the user's high-level, declarative objectives in natural language, such as ""allow traffic from A to B with bandwidth X""""; ""we leverage a structured tuple (i.e., (A, B, X)) to represent a forwarding intent for simplicity""."
+feng2025secllm,"SecLLM: Intent-Driven Orchestration of Heterogeneous Security Devices via MCP Function Calling and Retrieval-Augmented Generation (Feng et al., CISAT 2025)",Security,LLMs,Domain-Specific Fine-tuning,Graph-based,"Family: A pretrained generative model parses free natural language.
+Sub: LoRA adapters trained on (intent, task-graph) pairs. RAG contextualizes graph nodes with device and segmentation facts after the graph exists, so it is Translation, not Capture.
+IR: A typed task graph produced from the user intent alone; nodes are atomic security actions, edges are pre/post-conditions.
+Evidence: ""LoRA rank-16 adapters""; ""task-graph) pairs distilled from MITRE""; ""parses the intent into a typed task-graph""; ""The LLM produces a typed task graph; live facts are retrieved and fused"".
+Note: the model is described as ""a 32 billion-parameter derivative of Qwen-3-8B"", which is internally inconsistent; it does not affect the family."
+landeau2023security,"Security-Oriented Network Intent Placement using Particle Swarm Optimization (Landeau, Avgeris, Leivadeas & Lambadaris, CSNet 2023)",Security,Not specified,(not applicable),Schema-based,"Family: The authors explicitly leave the input channel out of scope; the intent content (application type, security level 1–4, QoS level) is human-originated, so the stage is coded as Not specified rather than not applicable.
+Sub: Not applicable without a family.
+IR: The next stage consumes application type, security level and QoS level as separate values; no serialization is reported.
+Evidence: ""we do not concentrate on the way that the user expresses her intent (i.e., through a GUI, natural language, etc.)""; ""a type of application, as well as a security and QoS level""; ""a level of security that can range from 1 to 4""."
+manias2024semantic,"Semantic Routing for Enhanced Performance of LLM-Assisted Intent-Based 5G Core Network Management and Orchestration (Manias, Chouman & Shami, IEEE GLOBECOM 2024)",General,Classical NLP,Encoder-based Extraction,Not applicable,"Family: Despite the LLM-assisted framing, the routing decision is made by embedding similarity between the message and route utterances (an encoder), not by a generative model.
+Sub: Classification into a closed set of routes; no entity or slot extraction.
+IR: A route label from a closed set; the actions triggered by the routes are not implemented, so no downstream stage consumes the label.
+Evidence: The router ""uses semantic meaning to route an input to the desired output""; evaluation is on routing accuracy over six routes and a None class.
+Secondary: LLMs."
+lingga2024spt,"SPT: Security Policy Translator for Network Security Functions in Cloud-Based Security Services (Lingga, Jeong, Yang & Kim, IEEE TDSC 2024)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: The user supplies a high-level policy as a document conforming to the Consumer-Facing Interface YANG model; YANG is a data model, not a policy-language grammar.
+Sub: Policy fields are processed by a fixed mapping; the DFA-based extraction follows the YANG hierarchy deterministically.
+IR: The CFI-conformant high-level policy as element–value pairs; finding addresses and NSFs happens while it is consumed (Translation).
+Evidence: ""The high-level security policy follows the data model defined in the Consumer-Facing Interface YANG data model""; ""DFA follows the hierarchy of the CFI YANG data model completely""; ""a key-value pair where the element is the key and the content is the value""."
+bensalem2021role,"The Role of Intent-Based Networking in ICT Supply Chains (Bensalem, Dizdarević, Carpio & Jukan, IEEE HPSR 2021)",Security,Formal Language,Controlled Natural Language Specification,Schema-based,"Family: The administrator writes intents directly in a language bound by a published grammar.
+Sub: Natural-language-like surface constrained by a grammar and limited vocabulary, which the paper itself calls a CNL; the input must conform to it.
+IR: The Intent Manager parses the text into a JSON file sent to the policy configurator.
+Evidence: ""We define a simple grammar for SC asset access control as an intent language""; ""The defined grammar in Grammar 1 is a CNL""; ""It parses the input plain text into a json file""; ""a json file with user specifications is generated and sent to the policy configurator"".
+Note: architecture and grammar are presented at design level, without empirical evaluation."
+wu2026toward,"Toward 6G Edge Intelligence: Lightweight LLMs for Intent-Driven Network Automation (Wu et al., IEEE TMC 2026)",General,LLMs,Domain-Specific Fine-tuning,Direct-text/Unstructured,"Family: Application intents are conveyed in natural language and processed by Llama 3 and a distilled student model.
+Sub: The teacher is LoRA-fine-tuned and the student trained by knowledge distillation and LoRA. Knowledge-graph triples added to the input are system knowledge, not request–output examples.
+IR: The intent and knowledge-graph context enter one model, which outputs the network service requirement (slice type and VNF chain) for orchestration.
+Evidence: ""APPIs are conveyed in natural language to express network demands"".
+Secondary: Graph-based."
+njah2023toward,"Toward Intent-Based Network Automation for Smart Environments: A Healthcare 4.0 Use Case (Njah, Leivadeas, Violos & Falkner, IEEE Access 2023)",General,Classical NLP,Encoder-based Extraction,Schema-based,"Family: Free natural language is processed by a fine-tuned BERT encoder; no generative model.
+Sub: Token-level named-entity recognition with a pretrained encoder.
+IR: A fixed five-field policy model (user, goal, network action, target, timeframe).
+Evidence: ""an intelligent intent refinement system based on the Named Entity Recognition (NER) approach""; ""the pre-trained Google's BERT (Bidirectional Encoder Representations from Transformers) algorithm, fine-tuned with a Healthcare 4.0 dataset"".
+Secondary: Structured Sequence Labelling."
+vantu2024towards,"Towards Intent-based Configuration for Network Function Virtualization using In-context Learning in Large Language Models (Tu, Yoo & Hong, IEEE/IFIP NOMS 2024)",General,LLMs,Prompt-based Inference,Schema-based,"Family: Free natural language is translated by pretrained LLMs (gpt-3.5-turbo and offline models).
+Sub: Example input–output pairs in the prompt, without retraining; examples are not retrieved by similarity.
+IR: A record conforming to a fixed JSON template (action, VNF type, flavor, bandwidth, latency class, classifiers), produced from the intent only.
+Evidence: ""In-context learning enables NFV-Intent to work without retraining the Large Language Models""; ""NFV-Intent uses a JSON template as the desired output""."
+brodimas2024towards,"Towards Intent-based Network Management for the 6G System adopting Multimodal Generative AI (Brodimas et al., EuCNC/6G Summit 2024)",General,LLMs,Prompt-based Inference; Agentic Refinement,Schema-based,"Family: A free natural-language description, with optional supplementary files, is interpreted by an LLM.
+Sub: Definitions, descriptions and examples are given as prompts. The generated NEST is shown to the user, and if the user is not satisfied the LLM regenerates it before handoff.
+IR: A JSON conforming to the GSMA network slice template (NEST), later converted into a TMF service order.
+Evidence: ""a standardized network slice template (NEST) JSON is generated by the LLM and then provided to the Dialogue block for the user to assess whether the suggested slice description accurately captures the intended requirements""; ""the result of the review (acceptance, rejection, regeneration) is used by the Dialogue block"".
+Note: the review step is optional, and model and prompt details are given at design level."
+manias2024towards_drcn,"Towards Intent-Based Network Management: Large Language Models for Intent Extraction in 5G Core Networks (Manias, Chouman & Shami, DRCN 2024)",General,LLMs,Prompt-based Inference,Not applicable,"Family: Free natural language is classified by a pretrained generative model (ChatGPT 3.5).
+Sub: The task is defined through prompt components; a fixed standards excerpt in the prompt is not retrieval.
+IR: One or more labels from six intent categories; entity extraction, JSON conversion and execution are not implemented, so no downstream stage consumes the labels.
+Evidence: ""prompting was the technique of choice for customizing the functionality and output of the LLM""."
+santos2024towards,"Towards Intent-based Scheduling for Performance and Security in Edge-to-Cloud Networks (Santos, Truyen, Baumann, De Turck, Budigiri & Joosen, ICIN 2024)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Application dependencies and segmentation preferences are expressed as fixed-meaning Kubernetes custom-resource fields.
+Sub: Selector and requirement fields map deterministically to scheduler inputs.
+IR: Segmentation CR and AppGroup records; the scheduler consumes declared values and does not receive a solver formula.
+Evidence: ""This allows CAs to specify high-level segmentation constraints via a Segmentation CR instance""; ""AGs specify microservice inter-dependencies as well as latency and bandwidth requirements of each dependency""; ""Application selectors (e.g., deployments, Pods) are applied in segmentation constraints"".
+Secondary: Constraint-based. Note: the security path is design-level (""Note that only the first two components have been implemented"")."
+lawal2024translating,"Translating Natural Language Specifications into Access Control Policies by Leveraging Large Language Models (Lawal et al., 2024)",Security,LLMs,Prompt-based Inference,Graph-based,"Family: A pretrained LLM converts free natural language via a single API call.
+Sub: Class definitions and a few examples in one prompt; parameters are explicitly not changed; no similarity retrieval; the checker reports violations without a regeneration loop.
+IR: Entities and typed relations (assignment, association, prohibition) of an NGAC specification graph; JSON/Python dict is only the serialization.
+Evidence: ""without altering parameters or retraining large language models (LLMs)""; ""The API call returns predicted entities and their relationships extracted from the user's input""; ""an NGAC specification graph in the form of a Python Dictionary"".
+Secondary: Schema-based (JSON serialization)."
+ma2025uint,"UINT: An intent-based adaptive routing architecture (Ma, Ma & Wu, Computer Networks 2025)",General,Classical NLP,(no matching sub-mechanism),Schema-based,"Family: The user's natural language is classified by a probabilistic keyword-frequency model; no generative model.
+Sub: Classification into traffic types; it is neither sequence labelling, encoder-based nor rule-based extraction.
+IR: A predicted traffic-type label passed to the controller and routing algorithm.
+Evidence: ""we design a predictor to predict user-requested network traffic types by tracking and identifying the network activity intents based on the user's natural language""."
+thamizhiniyan2026unifying,"Unifying the Fragmented Perimeter: A Hybrid Mesh Firewall Architecture for Zero-Trust Enforcement in Heterogeneous Networks (Thamizhiniyan & Maranco, ICADCS 2026)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Administrators formulate high-level policies through a REST API of the controller; no NL processing or policy grammar is described.
+Sub: A structured request submitted through an API is mapped by fixed rules. The template-based PIT engine that produces node syntax is Translation, so it is not evidence for the Capture mapping.
+IR: An abstract policy record submitted to the API; its fields are not shown (only the example ""Allow Web to DB"").
+Evidence: ""It reveals a high-level API, which administrators can use to formulate high-level security policy (e.g., ""Allow Web to DB"")""; ""deployed through a REST API (FastAPI)""; ""takes abstract intent and translates it into low level syntax"".
+Note: SIEM/IDS-triggered automatic policies are a non-human intent source, not the dominant channel."
+leivadeas2021vnf,"VNF Placement Problem: A Multi-Tenant Intent-Based Networking Approach (Leivadeas & Falkner, ICIN 2021)",Security,Structured Interfaces,Rules-based Mapping,Schema-based,"Family: Input is a template-based form with closed value sets (e.g., high/medium/low).
+Sub: Form fields map deterministically to an XML intent file; blueprint selection happens at the NFVO.
+IR: XML intent file (Service, QoS_Level, Security_Level, StartTime, Duration).
+Evidence: ""Through this template the users can request and customize their network service by specifying a number of attributes""; ""through a template-based form generating the following xml-based file""; ""The NFVO will associate this intent to a pre-specified SC blueprint""."
