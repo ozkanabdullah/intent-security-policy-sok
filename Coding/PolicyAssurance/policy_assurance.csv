@@ -1,0 +1,181 @@
+BibTeX Key,Paper,Sub-Corpus,Assurance Scope,Assurance Mechanism,Resolution Routing,Rationale and Evidence
+shokouhi2026agentic,"Agentic AI for Intent-driven Optimization in Cell-free O-RAN (Shokouhi & Wong, IEEE ICC 2026)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Local Re-actuation,"Scope: Per-user minimum data rates set by the intent.
+Mechanism: (1) Measured rates are compared with the minimum-rate constraints. (2) An LLM monitoring agent reasons over the violation history to choose the correction.
+Routing: Priority weights and the set of active O-RUs are adjusted; the objective and constraints stay the same.
+Evidence: ""User 3 ≥ 50 Mbps""; ""The monitoring agent continuously measures and monitors the user data rates""; ""until all the minimum rate requirements are satisfied"".
+Secondary: Policy Regeneration (the weights are recomputed by Translation-side agents)."
+khaldi2026agentic,"Agentic-AI Framework for Integrated Design, Implementation, Testing, and Operation of Digital Twin Networks (Khaldi, Lehmann, Ghita & Trick, IEEE OJCOMS 2026)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Policy Regeneration; Human Escalation,"Scope: KPIs derived from the use case (latency, packet loss, slice performance).
+Mechanism: (1) Telemetry is checked against the KPI targets. (2) LLM agents reflect on the shortfall and design the corrective strategy.
+Routing: An unmet KPI triggers a new design iteration that regenerates code and tests; an actuation problem escalates control back to the operator.
+Evidence: ""If the deployed solution fails to meet KPIs in the real world, despite passing sandbox validation, the system must detect this discrepancy and automatically trigger a new design iteration""; ""escalates control back to the operator"".
+Secondary: Behavioral Compliance (the second use case measures network isolation)."
+chatzistefanidis2026agoran,"AGORAN: An agentic open marketplace for 6G RAN automation (Chatzistefanidis et al., Computer Networks 2026)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Policy Regeneration,"Scope: The KPI bounds of the agreed SLA (bandwidth, latency, throughput).
+Mechanism: (1) Live counters are checked against the SLA bounds. (2) LLM brokers reason about the degraded performance and choose new targets.
+Routing: Agents renegotiate reduced targets, and the new SLA becomes a new RIC policy.
+Evidence: ""monitor live counters""; ""When spectral efficiency collapses""; ""reinitiate discourse"".
+Note: In the experiments, stakeholders restate their intents at the start of each phase; the detection logic is not detailed."
+abbas2024ai,"AI-Driven Data Analytics and Intent-Based Networking for Orchestration and Control of B5G Consumer Electronics Services (Abbas et al., IEEE Trans. Consumer Electronics 2024)",General,Service-Level Outcome,Data-Driven Prediction,Local Re-actuation,"Scope: Resource overloading that degrades QoS and violates the SLA.
+Mechanism: A learned model forecasts resource usage, and the threshold is applied to the predicted value.
+Routing: The prediction triggers scale-up/scale-down; the slice intent is unchanged and only resource amounts are adjusted.
+Evidence: ""will be helpful in detecting the overloading of resources causing performance degradation and SLA violation""; ""dynamic thresholding-based model that uses the NWDAF module’s prediction results and performs the auto-scaling"".
+Note: The DDoS-prevention policy is triggered by attack detection and is not treated as assurance of a deployed intent."
+li2025antireconnaissance,"Anti-Reconnaissance Routing in Non-Cooperative Networks via Reinforcement Learning (Li et al., IEEE CRESS 2025)",Security,Behavioral Compliance,Specification-Based Monitoring,Local Re-actuation; Policy Regeneration,"Scope: Whether the deployed path keeps the anonymity level required by the intent.
+Mechanism: Risk and policy violations are evaluated against thresholds from observed telemetry.
+Routing: (1) Atomic switchover from the primary to the backup path. (2) A reseed signal asks the path planner to synthesize new backup paths.
+Evidence: ""estimates instantaneous risk from observed telemetry""; ""When repeated policy violations or high-risk events are detected""; ""issues a reseed signal to PPORP to synthesize new backup paths"".
+Secondary: Service-Level Outcome (latency, bandwidth and loss are also monitored)."
+khan2021applying,"Applying RouteNet and LSTM to Achieve Network Automation: An Intent-based Networking Approach (Khan, Abbas, Rivera, Muhammad & Song, APNOMS 2021)",Security,Service-Level Outcome,Specification-Based Monitoring; Data-Driven Prediction,Local Re-actuation,"Scope: Quality and availability of end-to-end services.
+Mechanism: (1) Monitored data is checked for anomalous behavior with dynamic thresholds. (2) LSTM and RouteNet predict future resource and link utilization.
+Routing: VNF resources are scaled and paths updated; the intent stays the same.
+Evidence: ""based on dynamic thresholding, it triggers the ML models""; ""our model predicts the three best path options with their predicted link utilizations""; ""to scale the VNF resources""."
+avgerinos2026arm,"ARM: Autonomous Remediation and Management With LLM Agents for Intent-Driven Control (Avgerinos, Ramantas, Alonso & Verikoukis, IEEE IoT-J 2026)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Local Re-actuation,"Scope: Performance of the managed service, expressed as performance-violation intents.
+Mechanism: (1) Metric deviations are detected and packaged as structured alerts. (2) An LLM agent diagnoses likely root causes and selects corrective actions.
+Routing: The agent applies remediation actions to the running system, with validation steps afterwards.
+Evidence: ""the agent is activated by high-level performance violation intents—structured, context-rich alerts that encapsulate both metric deviations and system state""; ""the agent identifies likely root causes and selects corrective actions""."
+parashar2026aspbased,"ASP-Based Policy Fusion for Vendor-Agnostic Security Orchestration in Hybrid Multi-Cloud (Parashar, Pappu, Suvarna & Sharma, IEEE LANMAN 2026)",Security,Configuration/State Conformance,State Conformance Checking,Local Re-actuation,"Scope: Configuration drift in vendor artifacts (unauthorized allows, removed TLS).
+Mechanism: Observed enforcement decisions are compared deterministically with the expected state derived from the ASP model.
+Routing: A repair planner produces a single corrective action that returns the artifact to the expected state.
+Evidence: ""By comparing observed enforcement against the ASP-derived expected state, the framework provides a vendor-independent compliance check""; ""the repair planner generated a single corrective action"".
+Secondary: Behavioral Compliance; Model-Based Evaluation (the artifact state is represented by an adapter in the experiment)."
+maxenti2026autoran,"AutoRAN: Automated and Zero-Touch Open RAN Systems (Maxenti et al., IEEE Trans. Mobile Computing 2026)",General,Configuration/State Conformance,State Conformance Checking,Local Re-actuation,"Scope: Whether RAN workloads keep running on available nodes.
+Mechanism: The platform detects an unavailable node and compares it with the desired deployment state.
+Routing: Workloads on the failed node are evicted and restarted on another node.
+Evidence: ""The eviction happens automatically after a timeout that starts when OpenShift detects the node to be unavailable""."
+rivera2023blockchain,"Blockchain and Intent-Based Networking: A Novel Approach to Secure and Accurate Network Policy Implementation (Díaz Rivera et al., 2023)",Security,Configuration/State Conformance,State Conformance Checking,Local Re-actuation,"Scope: Whether access policies installed in the SDP overlay match the intents recorded on the blockchain.
+Mechanism: Installed configuration is compared deterministically with the blockchain record.
+Routing: Unauthorized changes are rectified automatically; the recorded policy stays the same.
+Evidence: ""periodically check the consistency between the blockchain and the SDP overlay configurations""; ""rectifying the unauthorized changes automatically""."
+haikal2026bridging,"Bridging High-Level Intent and Network Execution: Detecting Violations and Intent Drift Through Low-Level Traffic Analysis (Haikal, Ismail & Hammad, IEEE AIIoT 2026)",Security,Behavioral Compliance,Specification-Based Monitoring; Data-Driven Prediction,Open loop,"Scope: Whether actual data-plane traffic follows the behavior allowed by the security policy.
+Mechanism: (1) Flows are checked against explicit policy constraints. (2) Intent drift is measured as a statistical deviation from an empirical baseline.
+Routing: The analysis ends with violation and drift findings; feeding them back into compilation is left to future work.
+Evidence: ""evaluate data-plane compliance against explicit policy constraints""; ""track behavioral deviations relative to an empirical expected baseline""; ""Future work will investigate the continuous compilation mechanics""."
+antonakoglou2025camino,"CAMINO: Cloud-native Autonomous Management and Intent-based Orchestrator (Antonakoglou et al., EuCNC/6G Summit 2025)",General,Configuration/State Conformance,State Conformance Checking,Local Re-actuation,"Scope: Whether the cluster's actual state matches the desired state held in the repository.
+Mechanism: The reconciliation operator deterministically compares desired and observed state.
+Routing: On drift, the operator returns the cluster to the repository state; the manifest itself is unchanged.
+Evidence: The repository ""serves as the source of truth"" for the reconciler.
+Secondary: Service-Level Outcome (the monitoring service also raises alerts for misbehaving applications, without a stated rule or destination)."
+venanzi2025collective,"Collective intelligence-based service migration enabling zoom-in functionality within Industry 5.0 (Venanzi et al., Internet of Things 2026)",General,Not specified,Not reported,(not specified),"Scope: The monitored metrics and the intent targets they are compared with are not stated.
+Mechanism: An intent assurance module continuously collects node metrics, but how conformance is decided is not described.
+Routing: Feedback goes to earlier pipeline stages; which stage and which action are not stated.
+Evidence: ""an intent assurance module monitors the system by continuously collecting metrics from the network’s nodes""; ""provides feedback to earlier stages in the pipeline, enabling corrective actions if discrepancies are detected"".
+Note: Service migration is decided by the scheduler's policy-based node selection, which is separate from the assurance module."
+iorio2023computing,"Computing Without Borders: The Way Towards Liquid Computing (Iorio, Risso, Palesandro, Camiciotti & Manzalini, IEEE Trans. Cloud Computing 2023)",General,Configuration/State Conformance,State Conformance Checking,Local Re-actuation,"Scope: Whether offloaded resources across clusters match their declared desired state.
+Mechanism: Kubernetes-style reconciliation compares desired and observed state deterministically.
+Routing: Pods on a failing cluster are evicted and rescheduled until the desired state is reached.
+Evidence: ""standard Kubernetes logic to proceed evicting all pods hosted on the failing cluster""; ""eventually reaching the desired state""."
+alemany2025defining,"Defining Intent-Based Service Management Automation for 6G Multi-Stakeholders Scenarios (Alemany et al., IEEE OJCOMS 2025)",General,Service-Level Outcome,Specification-Based Monitoring; Data-Driven Prediction,Local Re-actuation,"Scope: The intent's KPIs, such as an end-to-end latency target.
+Mechanism: (1) Closed loops monitor SLO fulfillment against explicit targets. (2) A trust loop forecasts deviations of trust requirements statistically.
+Routing: Autoscaling and migration of parts of the service under the same service objective.
+Evidence: ""intent for E2E latency below 80ms""; ""forecast deviation of trust requirements""; ""autoscaling and migration of part of the provided service"".
+Note: The closed loops are specified at architecture level."
+violos2026detecting,"Detecting application transitions and identifying application types for intent-based network assurance: A machine learning perspective (Violos, Voutsas, Diou & Leivadeas, Computer Networks 2026)",General,Service-Level Outcome,Data-Driven Prediction,Human Escalation,"Scope: Whether the network configuration still matches the requirements of the active application.
+Mechanism: Learned models detect application transitions and identify the new application type from traffic.
+Routing: Network administrators are alerted; automatic reconfiguration is stated as a capability, with low-level resolution outside the paper's scope.
+Evidence: ""Once an application change is detected and identified, the IBNA system can automatically alert network administrators and trigger dynamic reconfiguration of network resources""."
+tang2025endtoend,"End-to-End Edge AI Service Provisioning Framework in 6G ORAN (Tang et al., IEEE VTC2025-Fall)",General,Service-Level Outcome,Specification-Based Monitoring,Human Escalation,"Scope: The QoS of the deployed AI service (latency, throughput, loss, jitter, availability).
+Mechanism: An xApp monitors QoS metrics and raises alerts on QoS issues; thresholds are not given.
+Routing: Alerts and reports go to the user; the deployment manager recommends actions but does not apply them.
+Evidence: ""To ensure that the deployed AI service meets the expected performance""; ""allowing users to take preventive action"".
+Note: The paper also mentions alerts on predicted degradation without describing a prediction model."
+sun2025experimental,"Experimental demonstration of local AI-Agents for lifecycle management and control automation of optical networks (Sun et al., JOCN 2025)",General,Service-Level Outcome,Generative Diagnostic Reasoning,Human Escalation,"Scope: Failures that bring down deployed services; in the experiment, a fiber cut drops 16 services.
+Mechanism: An LLM agent analyzes raw alarm logs from network elements and produces troubleshooting guidance.
+Routing: Troubleshooting steps go to engineers; no automated correction is described.
+Evidence: ""raw alarm logs from various network elements""; ""leading to the drop of 16 services"".
+Note: Periodic power re-equalization is scheduled optimization, not triggered by a finding."
+dzeparoska2024intent,"Intent Assurance using LLMs guided by Intent Drift (Dzeparoska, Tizghadam & Leon-Garcia, 2024)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Local Re-actuation,"Scope: Service health and availability targets.
+Mechanism: (1) KPIs are classified against explicit thresholds and a gradient vector is computed. (2) An LLM analyzes the intent drift and recommends actions.
+Routing: In the example, a failed collector is restarted; the intent and its policy tree stay the same.
+Evidence: ""computes the gradients, and analyzes the intent drift to recommend actions""; ""the LLM selects the restart action"".
+Secondary: Policy Regeneration (the repair actions are chosen by the policy-generating LLM)."
+martini2023intent,"Intent-based network slicing for SDN vertical services with assurance: Context, design and preliminary experiments (Martini, Gharbaoui & Castoldi, Future Generation Computer Systems 2023)",General,Service-Level Outcome,Specification-Based Monitoring,Policy Regeneration,"Scope: The slice's effective throughput; connectivity is also checked.
+Mechanism: Non-compliance with the stated requirement is signalled by an alarm.
+Routing: The deviation returns to the intent engine, which corrects it through intent refinements.
+Evidence: ""intent refinements""; ""automated intent refinements are possible"".
+Secondary: Behavioral Compliance (connectivity)."
+lyu2026intentbased,"Intent-Based Networking Framework for IoMT Communications in Space–Air–Ground-Integrated Systems (Lyu, Basheer & Li, IEEE IoT Journal 2026)",General,Service-Level Outcome,Specification-Based Monitoring,Policy Regeneration; Human Escalation,"Scope: Latency, bandwidth utilization and service availability against the requested medical service parameters.
+Mechanism: Runtime performance is compared with the parameters requested by the intent.
+Routing: Deviations trigger automatic policy adjustments and expert review; persistent mismatches trigger intent reinterpretation.
+Evidence: ""The system tracks latency, bandwidth utilization, and service availability compared with requested parameters""; ""Deviation detection triggers automatic policy adjustments, while persistent mismatches initiate intent reinterpretation processes""; ""Noncompliance triggers automatic policy adjustments and expert review processes"".
+Note: The loop is described at architecture level."
+orozco2025intent,"Intent-Based Service Provisioning and Closed-Loop Automation for Cobot Service Migration in a Multi-Stakeholder Environment (Orozco et al., 2025)",General,Service-Level Outcome,Specification-Based Monitoring,Local Re-actuation,"Scope: Uninterrupted surveillance service (zero downtime); battery level is used as a leading indicator.
+Mechanism: A closed-loop function compares the cobot's battery level with an explicit threshold.
+Routing: Low battery leads to service migration to another cobot; the intent stays the same.
+Evidence: ""if the battery level of the cobot drops below a given threshold, the CL reacts tuning the service""; ""a service migration towards another cobot is decided""."
+zhang2024intent,"Intent-Driven Closed-Loop Control and Management Framework for 6G Open RAN (Zhang et al., IEEE IoT Journal 2024)",General,Service-Level Outcome,Specification-Based Monitoring,Local Re-actuation,"Scope: Slice SLAs such as latency and rate.
+Mechanism: The gap between the current state and the intent goal is compared with an explicit fault-tolerance value.
+Routing: A matching rule from the knowledge base, or a new rule learned by DQN, adjusts per-slice resource allocation; the goal stays the same.
+Evidence: ""violations exceeding fault tolerance values""; ""the xApp-Slice to realize the resource management""."
+jimmington2026intent2vec,"Intent2Vec: Contrastive Learning for Predictive and Interpretable Intent Violation Detection in SDN (Jimmington & Thampi, COMSNETS 2026)",Security,Behavioral Compliance,Data-Driven Prediction,Policy Regeneration,"Scope: Whether observed flows violate the declared intent semantics (QoS, port-range and access constraints).
+Mechanism: A threshold is applied to a violation probability computed from distances in a learned embedding space.
+Routing: The system emits a mitigation intent referencing the violated policy, which the controller translates into OpenFlow rules.
+Evidence: ""Does this flow violate an intent?""; ""and translated by the controller into OpenFlow primitives"".
+Secondary: Local Re-actuation (the original intent is not regenerated)."
+akbari2025intentcontinuum,"IntentContinuum: Using LLMs to Support Intent-Based Computing Across the Compute Continuum (Akbari, Grundy, Cheema & Toosi, 2025)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Local Re-actuation,"Scope: The application's response time stays within the range set by the intent.
+Mechanism: (1) The measured response time is compared with explicit upper and lower bounds. (2) After a violation, GPT-4o analyzes system data, identifies the root cause and selects the corrective action.
+Routing: Pod migration, replica scaling, CPU/memory allocation and flow rerouting; the intent stays the same.
+Evidence: ""initiating a continuous feedback loop to ensure that the user-defined intent is always satisfied""."
+li2023kano,"Kano: Efficient Cloud Native Network Policy Verification (Li, Hu, Jia, Wang & Li, IEEE TNSM 2023)",Security,Behavioral Compliance,Model-Based Evaluation,Human Escalation,"Scope: Whether the reachability and isolation produced by installed network policies satisfy operator invariants.
+Mechanism: Policies are read from the Kubernetes controller and verified over a matrix model.
+Routing: Violations are reported with an automatically generated fix plan, which the operator applies.
+Evidence: ""We provide a script that automatically generates LAVI programs by accessing information from a Kubernetes controller""; ""Kano also generates fix plans for violations to assist operators"".
+Secondary: Policy Regeneration (the fix plan produces new policies, but its application is left to the operator)."
+mehmood2025knowledge,"Knowledge-Driven Intent Life-Cycle Management for Cellular Networks (Mehmood, Kralevska & Palma, IEEE TNSM 2025)",General,Service-Level Outcome,Specification-Based Monitoring,Local Re-actuation,"Scope: Each intent's end-to-end latency target and SLA.
+Mechanism: Measured performance of deployed intents is compared with target latencies and compliance is reported.
+Routing: SPSA/MGDA re-optimize resources against the required KPIs; the intents stay the same.
+Evidence: ""The compliance of the deployed intents is monitored, and mutual optimization against their required service key performance indicators is performed""."
+hossain2026leaddrift,"LEAD-Drift: Real-time and Explainable Intent Drift Detection by Learning a Data-Driven Risk Score (Hossain & Aljoby, IEEE ICC 2026)",General,Service-Level Outcome,Data-Driven Prediction,Human Escalation,"Scope: Predicted intent failure of a service, scored from service-health KPIs.
+Mechanism: A learned model produces a forward-looking risk score, and the threshold is applied to that score.
+Routing: Explained alerts with root-cause KPIs go to operators; automated remediation is mentioned only as a possibility.
+Evidence: ""continuously scoring incoming telemetry""; ""it can be opaque to operators""; ""the controller can trigger predefined remediation policies"".
+Secondary: Open loop (the recipient of the alert is not stated explicitly)."
+asif2025leveraging,"Leveraging Cognitive Machine Reasoning and NLP for Automated Intent-Based Networking and e2e Service Orchestration (Asif, Khan & Song, IEEE Access 2025)",General,Service-Level Outcome,Specification-Based Monitoring,Policy Regeneration,"Scope: The intent's QoS requirements (latency, throughput).
+Mechanism: Real-time QoS metrics are compared with expected performance, and deviations trigger correction.
+Routing: The cognitive reasoning engine re-derives policies from templates, so feedback returns to the policy-generating component.
+Evidence: ""enables real-time monitoring of network conditions and automatic policy adjustments"".
+Secondary: Local Re-actuation (whether the adjustment changes only resource amounts is not detailed)."
+fontana2025leveraging,"Leveraging LLM-Powered Intelligent Chatbots for Intent-Based Networking in 5G Modem Reconfiguration (Fontana, Berardi, D'Urso, Sciarrone & Martini, IEEE NetSoft 2025)",Security,Behavioral Compliance,Specification-Based Monitoring,(not specified),"Scope: Whether the configured modem connects to the network and reaches other devices.
+Mechanism: After installation, the workflow tests connectivity on the real devices, for instance with a ping.
+Routing: What follows a failed test is not described.
+Evidence: ""proceeds to test the connectivity of the real devices through, for instance, a ping command""; ""Function Calling and testing are operated directly on devices"".
+Note: The test step is described at workflow level; the reported results were assessed by the authors."
+dzeparoska2023policy,"LLM-based policy generation for intent-based management of applications (Dzeparoska, Lin, Tizghadam & Leon-Garcia, CNSM 2023 AnServApp Workshop)",General,Configuration/State Conformance,State Conformance Checking; Generative Diagnostic Reasoning,Local Re-actuation,"Scope: A virtual machine's observed state differs from its expected state (running instead of shut down).
+Mechanism: (1) The observed machine state is compared directly with the expected state. (2) An LLM then generates the corrective policy sequence.
+Routing: The machine is restarted or recreated and the service chain updated; the intent and service definition stay the same.
+Evidence: ""validate the VM""; ""passes this message to the LLM to fix the intent"".
+Secondary: Service-Level Outcome (the intent targets high availability); Policy Regeneration (the repair sequence is generated by the policy LLM)."
+chatzistefanidis2024maestro,"MAESTRO: LLM-Driven Collaborative Automation of Intent-Based 6G Networks (Chatzistefanidis, Leone & Nikaein, IEEE Networking Letters 2024)",General,Service-Level Outcome,Specification-Based Monitoring; Generative Diagnostic Reasoning,Policy Regeneration,"Scope: The negotiated service intent, such as an agreed throughput.
+Mechanism: (1) RAN-side measurements are compared with the agreed target. (2) LLM agents reason about the degraded situation and select a new agreement.
+Routing: A new negotiation produces a new service intent, which passes through Translation again.
+Evidence: ""as conditions worsen, a second negotiation is triggered"".
+Note: Same research group and negotiation pattern as AGORAN (Chatzistefanidis et al., 2026)."
+hossain2025netintent,"NetIntent: Leveraging Large Language Models for End-to-End Intent-Based SDN Automation (Hossain & Aljoby, IEEE OJ-COMS 2025)",General,Behavioral Compliance,State Conformance Checking; Specification-Based Monitoring; Generative Diagnostic Reasoning,Local Re-actuation; Human Escalation,"Scope: Whether installed flow rules produce the forwarding, blocking and queueing behavior the intent requires.
+Mechanism: (1) Installed rules are read back and compared with the original rules. (2) Test traffic is sent and its behavior checked. (3) An LLM ranks root causes and recommends actions.
+Routing: Missing rules are reinstalled from the intent store; after the retry limit, the case is escalated to the operator.
+Evidence: ""Retrieve installed flow rule""; ""Transmit test traffic""; ""Reinstall rule from IntentStore""; ""Escalate to operator.""
+Secondary: Configuration/State Conformance and Service-Level Outcome (QoS intents)."
+abbas2021network_access,"Network Slice Lifecycle Management for 5G Mobile Networks: An Intent-Based Networking Approach (Abbas, Khan, Afaq & Song, IEEE Access 2021)",General,Service-Level Outcome,Data-Driven Prediction,Local Re-actuation,"Scope: The assurance engine keeps slice resources sufficient for upcoming demand so that service provisioning is not interrupted.
+Mechanism: Update decisions are taken from the resource usage predicted by an LSTM model.
+Routing: The decision engine asks the IBN to update the slice's runtime resources; the slice intent stays the same.
+Evidence: ""takes the predicted resource usage from the LSTM model""; ""instantiates the configuration for activating the duplicate resources"".
+Secondary: Policy Regeneration (the update request passes through the IBN)."
+kou2026safla,"SAFLA: Semantic-Aware Full Lifecycle Assurance for Intent-Driven Networks (Kou, Yang & Gurusamy, IEEE TCCN 2026)",General,Behavioral Compliance,Model-Based Evaluation; Specification-Based Monitoring,Local Re-actuation; Policy Regeneration,"Scope: Whether the connectivity behavior produced by installed configuration matches user intents, including unauthorized forwarding.
+Mechanism: (1) Behavior is derived from flow tables over a network model. (2) Semantic drift is monitored periodically against the intents.
+Routing: Flow entries behind unauthorized behavior are removed; unmet intents trigger intent translation again.
+Evidence: ""a continuous assurance loop, periodically monitoring semantic drift""; ""removing erroneous flow entries""; ""re-executing intent translation""."
+feng2025secllm,"SecLLM: Intent-Driven Orchestration of Heterogeneous Security Devices via MCP Function Calling and Retrieval-Augmented Generation (Feng et al., CISAT 2025)",Security,Configuration/State Conformance,State Conformance Checking; Generative Diagnostic Reasoning,Local Re-actuation; Policy Regeneration; Human Escalation,"Scope: Whether each security action has reached its expected device state; post-conditions are state predicates.
+Mechanism: (1) Each goal node's post-condition is evaluated deterministically against the state returned by the device. (2) The LLM reasons over success metrics and deadlines to decide how to repair.
+Routing: Transient errors are retried, permanent constraints lead to re-planning of the task graph, and the case escalates to a human if no progress occurs.
+Evidence: ""host_state==isolated""; ""Convergence is declared when every goal node's post condition evaluates true and the task queue is empty""; ""re-plans around permanent constraints""; ""the system escalates to a human"".
+Secondary: Behavioral Compliance (the protection goal of the incident response)."
+gharbaoui2025towards,"Towards Intent Assurance: A Traffic Prediction Model for Software-Defined Networks (Gharbaoui, Martini, Berardi & Castoldi, ICIN 2025)",General,Service-Level Outcome,Data-Driven Prediction,Local Re-actuation,"Scope: Switch load and throughput, and the QoS/SLA compliance that depends on them.
+Mechanism: A learned SVM model classifies upcoming congestion from real-time traffic data.
+Routing: Predicted congestion triggers load-balancing reconfigurations under the same intent.
+Evidence: ""a traffic prediction model designed to prevent congestion""; ""as part of the assurance operations within an Intent-Based Networking (IBN) framework""; ""the module triggers reconfigurations to maintain network performance""."
+ramchandra2025towards,"Towards Intent Based Network Management: Evaluation of YANG-Based Protocols for Intent Translation (Ramchandra et al., CARS 2025)",Security,Configuration/State Conformance,State Conformance Checking,Open loop,"Scope: Whether the applied configuration is present on the device as expected.
+Mechanism: The configuration read back with show commands is compared with the expected entry and binding.
+Routing: The result marks convergence; no action on a mismatch is described.
+Evidence: ""Switch POST runs verification show commands""."
+ma2025uint,"UINT: An intent-based adaptive routing architecture (Ma, Ma & Wu, Computer Networks 2025)",General,Service-Level Outcome,Specification-Based Monitoring,Local Re-actuation,"Scope: The QoS requirements (latency, bandwidth) of each traffic type, also during traffic bursts.
+Mechanism: The controller monitors link performance and compares the remaining bandwidth of paths with an explicit congestion threshold.
+Routing: Forwarding paths are modified; the intent and traffic type stay the same.
+Evidence: ""based on path congestion and available bandwidth""; ""modify the forwarding paths of network traffic to meet the QoS requirements""."
